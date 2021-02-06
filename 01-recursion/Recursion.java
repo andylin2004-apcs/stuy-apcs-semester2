@@ -7,11 +7,12 @@ class Recursion{
   }
   public static long countNoDoubleLetterWords(int length,String word){
     if (length == 0){ return 1; }
-    for (int i = 0; i<=26; i++){
-      if (word.charAt(word.length()-1) == 'a'+i){ continue; }
-      else { return countNoDoubleLetterWords(length-1, word+('a'+i)); }
+    int total = 0;
+    for (int i = 'a'; i<='z'; i++){
+      if (word.length() > 0 && word.charAt(word.length()-1) == i){ continue; }
+      total += countNoDoubleLetterWords(length-1, word+(char)i);
     }
-    return 0;
+    return total;
   }
   public static double sqrt(double n){
     double rounded = Math.round(sqrt(n, n/2)*10000);
