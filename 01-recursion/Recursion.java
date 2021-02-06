@@ -1,3 +1,5 @@
+import java.lang.Math;
+
 class Recursion{
   public static String reverse(String s){
     if (s.length() <= 1){ return s; }
@@ -14,5 +16,7 @@ class Recursion{
   public static double sqrt(double n){
     return sqrt(n, n/2);
   }
-  private static double sqrt(double n, double guess)
+  private static double sqrt(double n, double guess){
+    if (Math.abs(guess*guess-n)/n == 0.00001) { return guess; }
+  }
 }
