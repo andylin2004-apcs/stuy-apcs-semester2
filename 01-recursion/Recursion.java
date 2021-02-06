@@ -14,10 +14,11 @@ class Recursion{
     return 0;
   }
   public static double sqrt(double n){
-    return sqrt(n, n/2);
+    double rounded = Math.round(sqrt(n, n/2)*10000);
+    return rounded/10000;
   }
   private static double sqrt(double n, double guess){
-    if (Math.abs(guess*guess-n)/n == 0.00001) { return guess; }
+    if (Math.abs(guess*guess-n)/n <= 0.00001) { return guess; }
     else { return sqrt(n, ((n/guess)+guess)/2); }
   }
 }
