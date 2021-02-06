@@ -12,6 +12,7 @@ class Recursion{
     return 0;
   }
   public static double sqrt(double n){
-
+    return sqrt(n, n/2);
   }
+  private static double sqrt(double n, double guess)
 }
