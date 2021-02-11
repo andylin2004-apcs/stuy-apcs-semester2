@@ -45,7 +45,14 @@ class QueenBoard{
   */
   public int countSolutions(){}
 
-  private boolean addQueen(int r, int c){}
+  private boolean addQueen(int r, int c){
+    if (board[r][c] != 0) return false;
+    board[r][c] = -1;
+    if (r != 0){
+
+    }
+    return true;
+  }
 
   private void removeQueen(int r, int c){}
 }
