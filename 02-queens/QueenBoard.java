@@ -1,4 +1,7 @@
 class QueenBoard{
+  private int[][]board;
+
+  public QueenBoard(int size){}
   /**
   *@return The output string formatted as follows:
   *All numbers that represent queens are replaced with 'Q'
@@ -11,7 +14,19 @@ class QueenBoard{
   *(pythonic string notation for clarity,
   *excludes the character up to the *)
   */
-  public String toString(){}
+  public String toString(){
+    String result = "";
+    for (int i = 0; i<board.length; i++){
+      String returnLine = "";
+      for (int v = 0; v<board[i].length; v++){
+        if (board[i][v] == -1) { returnLine += "Q"; }
+        else { returnLine += "_";}
+        returnLine += " ";
+      }
+      result += returnLine + "\n";
+    }
+    return result;
+  }
 
 
   /**Find the first solution configuration possible for this size board. Start by placing
@@ -29,4 +44,8 @@ class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
   */
   public int countSolutions(){}
+
+  private boolean addQueen(int r, int c){}
+
+  private void removeQueen(int r, int c){}
 }
