@@ -49,7 +49,9 @@ class QueenBoard{
     if (board[r][c] != 0) return false;
     board[r][c] = -1;
     if (r != 0){
-
+      for (int i = r-1; i>=0; i++){
+        board[i][c] += 1;
+      }
     }
     return true;
   }
