@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 class QueenBoard{
   private int[][]board;
 
@@ -52,36 +54,36 @@ class QueenBoard{
   */
   // public int countSolutions(){}
 
-  private boolean addQueen(int r, int c){
-    if (board[r][c] != 0) return false;
-    board[r][c] = -1;
+  public boolean addQueen(int r, int c){
+    if (this.board[r][c] != 0) return false;
+    this.board[r][c] = -1;
     //for column
-    for (int i = 0; i<board[r].length; i++){
+    for (int i = 0; i<this.board[r].length; i++){
       if (i == c) continue;
-      board[r][i] += 1;
+      this.board[r][i] += 1;
     }
     //for row
-    for (int i = 0; i<board.length; i++){
+    for (int i = 0; i<this.board.length; i++){
       if (i == r) continue;
-      board[i][c] += 1;
+      this.board[i][c] += 1;
     }
     //for diagonals (top left down)
-    for (int i = 1; i<board.length; i++){
+    for (int i = 1; i<this.board.length; i++){
       if (r-i < 0 || c-i < 0) break;
-      board[r-i][c-i] += 1;
+      this.board[r-i][c-i] += 1;
     }
-    for (int i = 1; i<board.length; i++){
-      if (r+i >= board.length || c+i >= board.length) break;
-      board[r+i][c+i] += 1;
+    for (int i = 1; i<this.board.length; i++){
+      if (r+i >= this.board.length || c+i >= this.board.length) break;
+      this.board[r+i][c+i] += 1;
     }
     //for diagonals (bottom left up)
-    for (int i = 1; i<board.length; i++){
-      if (r-i < 0 || c+i >= board.length) break;
-      board[r-i][c-i] += 1;
+    for (int i = 1; i<this.board.length; i++){
+      if (r-i < 0 || c+i >= this.board.length) break;
+      this.board[r-i][c-i] += 1;
     }
-    for (int i = 1; i<board.length; i++){
-      if (r+i >= board.length || c-i < 0) break;
-      board[r+i][c+i] += 1;
+    for (int i = 1; i<this.board.length; i++){
+      if (r+i >= this.board.length || c-i < 0) break;
+      this.board[r+i][c+i] += 1;
     }
     return true;
   }
