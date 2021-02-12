@@ -1,7 +1,14 @@
 class QueenBoard{
   private int[][]board;
 
-  public QueenBoard(int size){}
+  public QueenBoard(int size){
+    board = new int[size][size];
+    for (int i = 0; i<size; i++){
+      for (int v = 0; v<size; v++){
+        board[i][v] = 0;
+      }
+    }
+  }
   /**
   *@return The output string formatted as follows:
   *All numbers that represent queens are replaced with 'Q'
