@@ -37,21 +37,44 @@ class QueenBoard{
   *        returns true when the board is solveable, and leaves the board in a solved state
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
   */
-  public boolean solve(){}
+  // public boolean solve(){}
 
   /**Find all possible solutions to this size board.
   *@return the number of solutions found, and leaves the board filled with only 0's
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
   */
-  public int countSolutions(){}
+  // public int countSolutions(){}
 
   private boolean addQueen(int r, int c){
     if (board[r][c] != 0) return false;
     board[r][c] = -1;
-    if (r != 0){
-      for (int i = r-1; i>=0; i++){
-        board[i][c] += 1;
-      }
+    //for column
+    for (int i = 0; i<board[r].length; i++){
+      if (i == c) continue;
+      board[r][i] += 1;
+    }
+    //for row
+    for (int i = 0; i<board.length; i++){
+      if (i == r) continue;
+      board[i][c] += 1;
+    }
+    //for diagonals (top left down)
+    for (int i = 1; i<board.length; i++){
+      if (r-i < 0 || c-i < 0) break;
+      board[r-i][c-i] += 1;
+    }
+    for (int i = 1; i<board.length; i++){
+      if (r+i >= board.length || c+i >= board.length) break;
+      board[r+i][c+i] += 1;
+    }
+    //for diagonals (bottom left up)
+    for (int i = 1; i<board.length; i++){
+      if (r-i < 0 || c+i >= board.length) break;
+      board[r-i][c-i] += 1;
+    }
+    for (int i = 1; i<board.length; i++){
+      if (r+i >= board.length || c-i < 0) break;
+      board[r+i][c+i] += 1;
     }
     return true;
   }
