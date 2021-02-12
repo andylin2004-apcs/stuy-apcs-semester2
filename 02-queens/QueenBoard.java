@@ -46,7 +46,9 @@ class QueenBoard{
   *        returns true when the board is solveable, and leaves the board in a solved state
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
   */
-  // public boolean solve(){}
+  public boolean solve(){
+
+  }
 
   /**Find all possible solutions to this size board.
   *@return the number of solutions found, and leaves the board filled with only 0's
@@ -54,7 +56,7 @@ class QueenBoard{
   */
   // public int countSolutions(){}
 
-  public boolean addQueen(int r, int c){
+  private boolean addQueen(int r, int c){
     if (this.board[r][c] != 0) return false;
     this.board[r][c] = -1;
     //for column
@@ -68,22 +70,22 @@ class QueenBoard{
       this.board[i][c] += 1;
     }
     //for diagonals (top left down)
-    for (int i = 1; i<this.board.length; i++){
+    for (int i = 1; i<this.board.length-1; i++){
       if (r-i < 0 || c-i < 0) break;
       this.board[r-i][c-i] += 1;
     }
-    for (int i = 1; i<this.board.length; i++){
+    for (int i = 1; i<this.board.length-1; i++){
       if (r+i >= this.board.length || c+i >= this.board.length) break;
       this.board[r+i][c+i] += 1;
     }
     //for diagonals (bottom left up)
-    for (int i = 1; i<this.board.length; i++){
+    for (int i = 1; i<this.board.length-1; i++){
       if (r-i < 0 || c+i >= this.board.length) break;
-      this.board[r-i][c-i] += 1;
+      this.board[r-i][c+i] += 1;
     }
-    for (int i = 1; i<this.board.length; i++){
+    for (int i = 1; i<this.board.length-1; i++){
       if (r+i >= this.board.length || c-i < 0) break;
-      this.board[r+i][c+i] += 1;
+      this.board[r+i][c-i] += 1;
     }
     return true;
   }
