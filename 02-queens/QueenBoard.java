@@ -69,7 +69,9 @@ class QueenBoard{
   *@return the number of solutions found, and leaves the board filled with only 0's
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
   */
-  // public int countSolutions(){}
+  public int countSolutions(){
+    return solve(0, 0, 0);
+  }
 
   private boolean addQueen(int r, int c){
     if (this.board[r][c] != 0) return false;
