@@ -5,8 +5,12 @@ class QueenBoard{
 
   public QueenBoard(int size){
     board = new int[size][size];
-    for (int i = 0; i<size; i++){
-      for (int v = 0; v<size; v++){
+    this.resetBoard();
+  }
+
+  private void resetBoard(){
+    for (int i = 0; i<this.board.length; i++){
+      for (int v = 0; v<this.board[0].length; v++){
         board[i][v] = 0;
       }
     }
@@ -91,10 +95,16 @@ class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
   */
   public int countSolutions(){
+    for (int i = 0; i<this.board.length; i++){
+      for (int v = 0; v<this.board[0].length; v++){
+        if (this.board[i][v] != 0) throw new IllegalStateException();
+      }
+    }
     int total = 0;
     for (int i = 0; i<this.board.length; i++){
       total += this.countSolutions(0, i, 0);
     }
+    this.resetBoard();
     return total;
   }
 
