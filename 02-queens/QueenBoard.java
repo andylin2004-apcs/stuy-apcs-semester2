@@ -61,7 +61,7 @@ class QueenBoard{
     this.checkForNonZero();
     int total = 0;
     for (int i = 0; i<this.board.length; i++){
-      if (solve(0,0,0)) return true;
+      if (solve(0,i,0)) return true;
     }
     this.resetBoard();
     return false;
