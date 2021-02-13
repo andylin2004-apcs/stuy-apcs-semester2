@@ -56,19 +56,17 @@ class QueenBoard{
 
   private int solve(int numInserted, int nextRow, int nextCol){
     if (numInserted == this.board.length){
-      System.out.println("adding");
       return 1;
     }
-    else if (addQueen(nextRow, nextCol)){
+    if (addQueen(nextRow, nextCol)){
       int totalPossible = 0;
       for (int i = 0; i<this.board.length; i++){
         totalPossible += solve(numInserted+1, i, nextCol+1);
+        if (numInserted + 1 == this.board.length) break;
       }
       removeQueen(nextRow, nextCol);
-      System.out.println(totalPossible+"\n");
       return totalPossible;
     }else{
-      removeQueen(nextRow, nextCol);
       return 0;
     }
   }
@@ -152,7 +150,7 @@ class QueenBoard{
   }
 
   public static void main(String[] args) {
-    QueenBoard test = new QueenBoard(6);
+    QueenBoard test = new QueenBoard(5);
     System.out.println(test.countSolutions());
   }
 }
