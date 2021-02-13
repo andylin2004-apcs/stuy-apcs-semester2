@@ -54,20 +54,34 @@ class QueenBoard{
     return (total > 0);
   }
 
-  private int solve(int numInserted, int nextRow, int nextCol){
+  private int countSolutions(int numInserted, int nextRow, int nextCol){
     if (numInserted == this.board.length){
       return 1;
     }
     if (addQueen(nextRow, nextCol)){
       int totalPossible = 0;
       for (int i = 0; i<this.board.length; i++){
-        totalPossible += solve(numInserted+1, i, nextCol+1);
+        totalPossible += countSolutions(numInserted+1, i, nextCol+1);
         if (numInserted + 1 == this.board.length) break;
       }
       removeQueen(nextRow, nextCol);
       return totalPossible;
     }else{
       return 0;
+    }
+  }
+
+  private boolean solve(int numInserted, int nextRow, int nextCol){
+    if (numInserted == this.board.length){
+      return true;
+    }
+    if (addQueen(nextRow, nextCol)){
+      for (int i = 0; i<this.board.length; i++){
+        if (solve(numInserted+1, i, nextCol+1)) return true;
+      }
+      return false;
+    }else{
+      return false;
     }
   }
 
@@ -78,7 +92,7 @@ class QueenBoard{
   public int countSolutions(){
     int total = 0;
     for (int i = 0; i<this.board.length; i++){
-      total += this.solve(0, i, 0);
+      total += this.countSolutions(0, i, 0);
     }
     return total;
   }
