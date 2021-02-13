@@ -47,9 +47,7 @@ class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
   */
   public boolean solve(){
-
-    // this.removeQueen(0,0);
-    return true;
+    return (solve(0, 0, 0) > 0);
   }
 
   private int solve(int numInserted, int nextRow, int nextCol){
