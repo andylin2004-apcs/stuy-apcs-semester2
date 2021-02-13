@@ -51,7 +51,8 @@ class QueenBoard{
   }
 
   private int solve(int numInserted, int nextRow, int nextCol){
-    if (addQueen(nextRow, nextCol)){
+    if (numInserted == this.board.length) return 1;
+    else if (addQueen(nextRow, nextCol)){
       int totalPossible = 0;
       for (int i = 0; i<this.board.length; i++){
         totalPossible += solve(numInserted+1, i, nextCol+1);
