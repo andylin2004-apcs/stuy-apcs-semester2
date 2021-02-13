@@ -15,6 +15,14 @@ class QueenBoard{
       }
     }
   }
+
+  private void checkForNonZero(){
+    for (int i = 0; i<this.board.length; i++){
+      for (int v = 0; v<this.board[0].length; v++){
+        if (this.board[i][v] != 0) throw new IllegalStateException();
+      }
+    }
+  }
   /**
   *@return The output string formatted as follows:
   *All numbers that represent queens are replaced with 'Q'
@@ -41,7 +49,6 @@ class QueenBoard{
     return result;
   }
 
-
   /**Find the first solution configuration possible for this size board. Start by placing
   *  the 1st queen in the top left corner, and each new queen in the next COLUMN. When backtracking
   *  move the previous queen down to the next valid space. This means everyone will generate the same
@@ -51,10 +58,12 @@ class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
   */
   public boolean solve(){
+    this.checkForNonZero();
     int total = 0;
     for (int i = 0; i<this.board.length; i++){
       if (solve(0,0,0)) return true;
     }
+    this.resetBoard();
     return false;
   }
 
@@ -95,11 +104,7 @@ class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
   */
   public int countSolutions(){
-    for (int i = 0; i<this.board.length; i++){
-      for (int v = 0; v<this.board[0].length; v++){
-        if (this.board[i][v] != 0) throw new IllegalStateException();
-      }
-    }
+    this.checkForNonZero();
     int total = 0;
     for (int i = 0; i<this.board.length; i++){
       total += this.countSolutions(0, i, 0);
