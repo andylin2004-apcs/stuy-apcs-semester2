@@ -47,10 +47,23 @@ class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
   */
   public boolean solve(){
-    this.addQueen(0,0);
-    this.addQueen(2,4);
+
     // this.removeQueen(0,0);
     return true;
+  }
+
+  private int solve(int numInserted, int nextRow, int nextCol){
+    if (addQueen(nextRow, nextCol)){
+      int totalPossible = 0;
+      for (int i = 0; i<this.board.length; i++){
+        totalPossible += solve(numInserted+1, i, nextCol+1);
+      }
+      removeQueen(nextRow, nextCol);
+      return totalPossible;
+    }else{
+      removeQueen(nextRow, nextCol);
+      return 0;
+    }
   }
 
   /**Find all possible solutions to this size board.
