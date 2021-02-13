@@ -49,9 +49,9 @@ class QueenBoard{
   public boolean solve(){
     int total = 0;
     for (int i = 0; i<this.board.length; i++){
-      total += this.solve(0, i, 0);
+      if (solve(0,0,0)) return true;
     }
-    return (total > 0);
+    return false;
   }
 
   private int countSolutions(int numInserted, int nextRow, int nextCol){
@@ -164,8 +164,4 @@ class QueenBoard{
     }
   }
 
-  public static void main(String[] args) {
-    QueenBoard test = new QueenBoard(5);
-    System.out.println(test.countSolutions());
-  }
 }
