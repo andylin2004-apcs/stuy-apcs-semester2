@@ -79,6 +79,7 @@ class QueenBoard{
       for (int i = 0; i<this.board.length; i++){
         if (solve(numInserted+1, i, nextCol+1)) return true;
       }
+      removeQueen(nextRow, nextCol);
       return false;
     }else{
       return false;
