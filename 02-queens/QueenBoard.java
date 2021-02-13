@@ -116,66 +116,44 @@ class QueenBoard{
   private boolean addQueen(int r, int c){
     if (this.board[r][c] != 0) return false;
     this.board[r][c] = -1;
-    //for column
-    for (int i = 0; i<this.board[r].length; i++){
-      if (i == c) continue;
-      this.board[r][i] += 1;
-    }
-    //for row
-    for (int i = 0; i<this.board.length; i++){
-      if (i == r) continue;
-      this.board[i][c] += 1;
-    }
-    //for diagonals (top left down)
-    for (int i = 1; i<this.board.length; i++){
-      if (r-i < 0 || c-i < 0) break;
-      this.board[r-i][c-i] += 1;
-    }
-    for (int i = 1; i<this.board.length; i++){
-      if (r+i >= this.board.length || c+i >= this.board.length) break;
-      this.board[r+i][c+i] += 1;
-    }
-    //for diagonals (bottom left up)
-    for (int i = 1; i<this.board.length; i++){
-      if (r-i < 0 || c+i >= this.board.length) break;
-      this.board[r-i][c+i] += 1;
-    }
-    for (int i = 1; i<this.board.length; i++){
-      if (r+i >= this.board.length || c-i < 0) break;
-      this.board[r+i][c-i] += 1;
-    }
+    this.changeRisk(r, c, 1);
     return true;
   }
 
   private void removeQueen(int r, int c){
     if (this.board[r][c] != -1) return;
     this.board[r][c] = 0;
+    this.changeRisk(r, c, -1);
+  }
+
+  private void changeRisk(int r, int c, int changeBy){
+    //for column
     for (int i = 0; i<this.board[r].length; i++){
       if (i == c) continue;
-      this.board[r][i] -= 1;
+      this.board[r][i] += changeBy;
     }
     //for row
     for (int i = 0; i<this.board.length; i++){
       if (i == r) continue;
-      this.board[i][c] -= 1;
+      this.board[i][c] += changeBy;
     }
     //for diagonals (top left down)
     for (int i = 1; i<this.board.length; i++){
       if (r-i < 0 || c-i < 0) break;
-      this.board[r-i][c-i] -= 1;
+      this.board[r-i][c-i] += changeBy;
     }
     for (int i = 1; i<this.board.length; i++){
       if (r+i >= this.board.length || c+i >= this.board.length) break;
-      this.board[r+i][c+i] -= 1;
+      this.board[r+i][c+i] += changeBy;
     }
     //for diagonals (bottom left up)
     for (int i = 1; i<this.board.length; i++){
       if (r-i < 0 || c+i >= this.board.length) break;
-      this.board[r-i][c+i] -= 1;
+      this.board[r-i][c+i] += changeBy;
     }
     for (int i = 1; i<this.board.length; i++){
       if (r+i >= this.board.length || c-i < 0) break;
-      this.board[r+i][c-i] -= 1;
+      this.board[r+i][c-i] += changeBy;
     }
   }
 
