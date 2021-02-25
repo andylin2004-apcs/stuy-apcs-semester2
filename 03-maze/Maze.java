@@ -2,24 +2,50 @@ import java.util.*;
 import java.io.*;
 public class Maze{
 
- private char[][]maze;
+ private char[][]mazeList;
  private boolean animate;//false by default
 
- /*Constructor loads a maze text file, and sets animate to false by default.
+ /*Constructor loads a mazeList text file, and sets animate to false by default.
    When the file is not found then:
       throw a FileNotFoundException
 
-   You may assume the file contains a rectangular ascii maze, made with the following 4 characters:
+   You may assume the file contains a rectangular ascii mazeList, made with the following 4 characters:
    '#' - Walls - locations that cannot be moved onto
    ' ' - Empty Space - locations that can be moved onto
    'E' - the location of the goal (exactly 1 per file)
    'S' - the location of the start(exactly 1 per file)
 
-   You may also assume the maze has a border of '#' around the edges.
+   You may also assume the mazeList has a border of '#' around the edges.
    So you don't have to check for out of bounds!
  */
  public Maze(String filename) throws FileNotFoundException{
-     //COMPLETE CONSTRUCTOR
+   ArrayList<ArrayList<Character>> mazeList = new ArrayList<ArrayList<Character>>();
+   //instead of a try/catch, you can throw the FileNotFoundException.
+   //This is generally bad behavior
+
+   File text = new File(filename);
+   // can be a path like: "/full/path/to/file.txt" or "../data/file.txt"
+
+   //inf stands for the input file
+   Scanner inf = new Scanner(text);
+
+   while(inf.hasNextLine()){
+       String line = inf.nextLine();
+       mazeList.add(new ArrayList<Character>());
+       System.out.println(line);//hopefully you can do other things with the line
+       for (int i = 0; i<line.length(); i++){
+         mazeList.get(mazeList.size()-1).add(line.charAt(i));
+       }
+   }
+
+   System.out.println(mazeList);
+
+   char[][] mazeReturn = new char[mazeList.size()][mazeList.get(0).size()];
+   for (int i = 0; i<mazeList.size(); i++){
+     for (int v = 0; v<mazeList.get(0).size(); v++){
+       mazeReturn[i][v] = mazeList.get(i).get(v);
+     }
+   }
  }
 
  private void wait(int millis){
@@ -43,7 +69,7 @@ public class Maze{
    System.out.println("\033[1;1H");
  }
 
- /*Return the string that represents the maze.
+ /*Return the string that represents the mazeList.
   It should look like the text file with some characters replaced.
  */
  public String toString(){
@@ -67,10 +93,10 @@ public class Maze{
  /*
    Recursive Solve function:
 
-   A solved maze has a path marked with '@' from S to E.
+   A solved mazeList has a path marked with '@' from S to E.
 
-   Returns the number of @ symbols from S to E when the maze is solved,
-   Returns -1 when the maze has no solution.
+   Returns the number of @ symbols from S to E when the mazeList is solved,
+   Returns -1 when the mazeList has no solution.
 
    Postcondition:
      The 'S' is replaced with '@'
