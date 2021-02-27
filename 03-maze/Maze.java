@@ -39,7 +39,7 @@ public class Maze{
        }
    }
 
-   char[][] mazeList = new char[mazeArray.size()][mazeArray.get(0).size()];
+   mazeList = new char[mazeArray.size()][mazeArray.get(0).size()];
    for (int i = 0; i<mazeArray.size(); i++){
      for (int v = 0; v<mazeArray.get(0).size(); v++){
        mazeList[i][v] = mazeArray.get(i).get(v);
@@ -76,7 +76,14 @@ public class Maze{
   It should look like the text file with some characters replaced.
  */
  public String toString(){
-         for(int i = 0; i<mazeList)
+   String returnStr = "";
+   for(int i = 0; i<mazeList.length; i++){
+     for(int v = 0; v<mazeList[0].length; v++){
+       returnStr += mazeList[i][v];
+     }
+     returnStr += "\n";
+   }
+   return returnStr;
  }
 
  /*Wrapper Solve Function returns the helper function
