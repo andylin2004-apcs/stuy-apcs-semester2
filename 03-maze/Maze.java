@@ -101,13 +101,13 @@ public class Maze{
          mazeList[startI][startV] = '@';
          int solution = solve(startI+1, startV, "up");
          if (solution <= 0){
-           solve(startI-1, startV, "down");
+           solution += solve(startI-1, startV, "down");
          }
          if (solution <= 0){
-           solve(startI, startV+1, "left");
+           solution += solve(startI, startV+1, "left");
          }
          if (solution <= 0){
-           solve(startI, startV-1, "right");
+           solution += solve(startI, startV-1, "right");
          }
          if (solution > 0){
            return solution;
