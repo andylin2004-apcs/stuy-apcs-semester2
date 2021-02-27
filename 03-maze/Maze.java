@@ -21,7 +21,7 @@ public class Maze{
    So you don't have to check for out of bounds!
  */
  public Maze(String filename) throws FileNotFoundException{
-   ArrayList<ArrayList<Character>> mazeList = new ArrayList<ArrayList<Character>>();
+   ArrayList<ArrayList<Character>> mazeArray = new ArrayList<ArrayList<Character>>();
    //instead of a try/catch, you can throw the FileNotFoundException.
    //This is generally bad behavior
 
@@ -33,20 +33,18 @@ public class Maze{
 
    while(inf.hasNextLine()){
        String line = inf.nextLine();
-       mazeList.add(new ArrayList<Character>());
+       mazeArray.add(new ArrayList<Character>());
        System.out.println(line);//hopefully you can do other things with the line
        for (int i = 0; i<line.length(); i++){
-         mazeList.get(mazeList.size()-1).add(line.charAt(i));
+         mazeArray.get(mazeArray.size()-1).add(line.charAt(i));
        }
    }
 
-   System.out.println(mazeList);
-
-   char[][] mazeReturn = new char[mazeList.size()][mazeList.get(0).size()];
-   for (int i = 0; i<mazeList.size(); i++){
-     for (int v = 0; v<mazeList.get(0).size(); v++){
-       mazeReturn[i][v] = mazeList.get(i).get(v);
-       if (mazeReturn[i][v] == 'S'){
+   char[][] mazeList = new char[mazeArray.size()][mazeArray.get(0).size()];
+   for (int i = 0; i<mazeArray.size(); i++){
+     for (int v = 0; v<mazeArray.get(0).size(); v++){
+       mazeList[i][v] = mazeArray.get(i).get(v);
+       if (mazeList[i][v] == 'S'){
          startI = i;
          startV = v;
        }
@@ -79,7 +77,7 @@ public class Maze{
   It should look like the text file with some characters replaced.
  */
  public String toString(){
-         return "WRITE THIS METHOD";
+         for(int i = 0; i<mazeList)
  }
 
  /*Wrapper Solve Function returns the helper function
