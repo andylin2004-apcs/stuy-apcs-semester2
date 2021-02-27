@@ -6,6 +6,8 @@ public class Maze{
  private boolean animate;//false by default
  private int startI;
  private int startV;
+ private int endI;
+ private int endV;
 
  /*Constructor loads a mazeList text file, and sets animate to false by default.
    When the file is not found then:
@@ -96,9 +98,21 @@ public class Maze{
            clearTerminal();
          }
          //start solving at the location of the s.
-         int solution = solve(startI+1, startV, "up") + solve(startI-1, startV, "down") + solve(startI, startV+1, "left") + solve(startI, startV-1, "right");
-         return solution;
-         // return 0;
+         mazeList[startI][startV] = '@';
+         int solution = solve(startI+1, startV, "up");
+         if (solution <= 0){
+           solve(startI-1, startV, "down");
+         }
+         if (solution <= 0){
+           solve(startI, startV+1, "left");
+         }
+         if (solution <= 0){
+           solve(startI, startV-1, "right");
+         }
+         if (solution > 0){
+           return solution;
+         }
+         return -1;
  }
 
  /*
@@ -125,12 +139,11 @@ public class Maze{
          wait(50);
      }
 
-     System.out.println(row+""+col);
-     System.out.println(mazeList[row][col] == '#');
-
      if (mazeList[row][col] == '#'){
        return 0;
      }else if(mazeList[row][col] == 'E'){
+       endI = row;
+       endV = col;
        return 1;
      }else{
        int solution = 0;
@@ -138,20 +151,19 @@ public class Maze{
        if (!direction.equals("up")){
          solution += solve(row-1, col, "down");
        }
-       if (!direction.equals("down")){
+       if (!direction.equals("down") && solution <= 0){
          solution += solve(row+1, col, "up");
        }
-       if (!direction.equals("left")){
+       if (!direction.equals("left") && solution <= 0){
          solution += solve(row, col-1, "right");
        }
-       if (!direction.equals("right")){
+       if (!direction.equals("right") && solution <= 0){
          solution += solve(row, col+1, "left");
        }
        if (solution == 0){
          mazeList[row][col] = '.';
          return 0;
        }
-       System.out.println(solution+"e");
        return 1+solution;
      }
  }
