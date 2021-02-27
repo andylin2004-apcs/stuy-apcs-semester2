@@ -34,7 +34,6 @@ public class Maze{
    while(inf.hasNextLine()){
        String line = inf.nextLine();
        mazeArray.add(new ArrayList<Character>());
-       System.out.println(line);//hopefully you can do other things with the line
        for (int i = 0; i<line.length(); i++){
          mazeArray.get(mazeArray.size()-1).add(line.charAt(i));
        }
