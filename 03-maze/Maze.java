@@ -96,7 +96,8 @@ public class Maze{
            clearTerminal();
          }
          //start solving at the location of the s.
-         return solve(startI+1, startV) + solve(startI-1, startV) + solve(startI, startV+1) + solve(startI, startV-1);
+         int solution = solve(startI+1, startV, "up") + solve(startI-1, startV, "down") + solve(startI, startV+1, "left") + solve(startI, startV-1, "right");
+         return solution;
          // return 0;
  }
 
@@ -108,13 +109,15 @@ public class Maze{
    Returns the number of @ symbols from S to E when the mazeList is solved,
    Returns -1 when the mazeList has no solution.
 
+
+
    Postcondition:
      The 'S' is replaced with '@'
      The 'E' remain the same
      All visited spots that were not part of the solution are changed to '.'
      All visited spots that are part of the solution are changed to '@'
  */
- private int solve(int row, int col){ //you can add more parameters since this is private
+ private int solve(int row, int col, String direction){ //you can add more parameters since this is private
      //automatic animation! You are welcome.
      if(animate){
          gotoTop();
@@ -122,10 +125,35 @@ public class Maze{
          wait(50);
      }
 
+     System.out.println(row+""+col);
+     System.out.println(mazeList[row][col] == '#');
+
      if (mazeList[row][col] == '#'){
-       return -1;
+       return 0;
+     }else if(mazeList[row][col] == 'E'){
+       return 1;
+     }else{
+       int solution = 0;
+       mazeList[row][col] = '@';
+       if (!direction.equals("up")){
+         solution += solve(row-1, col, "down");
+       }
+       if (!direction.equals("down")){
+         solution += solve(row+1, col, "up");
+       }
+       if (!direction.equals("left")){
+         solution += solve(row, col-1, "right");
+       }
+       if (!direction.equals("right")){
+         solution += solve(row, col+1, "left");
+       }
+       if (solution == 0){
+         mazeList[row][col] = '.';
+         return 0;
+       }
+       System.out.println(solution+"e");
+       return 1+solution;
      }
-     return -1; //so it compiles
  }
 
  private static String colorize(String s){
