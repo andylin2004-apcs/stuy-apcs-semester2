@@ -4,6 +4,8 @@ public class Maze{
 
  private char[][]mazeList;
  private boolean animate;//false by default
+ private int startI;
+ private int startV;
 
  /*Constructor loads a mazeList text file, and sets animate to false by default.
    When the file is not found then:
@@ -44,6 +46,10 @@ public class Maze{
    for (int i = 0; i<mazeList.size(); i++){
      for (int v = 0; v<mazeList.get(0).size(); v++){
        mazeReturn[i][v] = mazeList.get(i).get(v);
+       if (mazeReturn[i][v] == 'S'){
+         startI = i;
+         startV = v;
+       }
      }
    }
  }
@@ -86,8 +92,8 @@ public class Maze{
            clearTerminal();
          }
          //start solving at the location of the s.
-         //return solve(???,???);
-         return 0;
+         return solve(startI+1, startV) + solve(startI-1, startV) + solve(startI, startV+1) + solve(startI, startV-1);
+         // return 0;
  }
 
  /*
