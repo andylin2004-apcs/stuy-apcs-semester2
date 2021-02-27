@@ -85,6 +85,7 @@ public class Maze{
      }
      returnStr += "\n";
    }
+   returnStr = colorize(returnStr);
    return returnStr;
  }
 
