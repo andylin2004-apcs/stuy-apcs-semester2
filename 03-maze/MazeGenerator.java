@@ -44,10 +44,20 @@ class MazeGenerator{
     return returnNum;
   }
   private static boolean checkParallelSurround(char[][] maze, int row, int col){
-    if ((maze[row-1][col] == ' ' && maze[row][col+1] == ' ') || (maze[row-1][col] == ' ' && maze[row][col-1] == ' ') || (maze[row+1][col] == ' ' && maze[row][col+1] == ' ') || (maze[row+1][col] == ' ' && maze[row][col-1] == ' ')){
-      return true;
+    int returnVal = 0;
+    if (maze[row+1][col] == ' '){
+      returnVal++;
     }
-    return false;
+    if (maze[row-1][col] == ' '){
+      returnVal++;
+    }
+    if (maze[row][col+1] == ' '){
+      returnVal++;
+    }
+    if (maze[row][col-1] == ' '){
+      returnVal++;
+    }
+    return returnVal > 1;
   }
   public static void main(String[] args) {
     char[][] maze = new char[8][8];
@@ -56,6 +66,6 @@ class MazeGenerator{
         maze[i][v] = '#';
       }
     }
-    generate(maze, maze.length, maze[0].length, 1, 1);
+    generate(maze, maze.length, maze[0].length, 4, 4);
   }
 }
