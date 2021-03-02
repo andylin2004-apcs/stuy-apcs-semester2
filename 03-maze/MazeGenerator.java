@@ -17,7 +17,7 @@ class MazeGenerator{
     }
   }
   private static int removeAt(char[][] maze, int row, int col, String direction){
-    if (row == 0 || col == 0 || row == maze.length-1 || col == maze[0].length-1 || maze[row][col] == ' '){
+    if (row == 0 || col == 0 || row == maze.length-1 || col == maze[0].length-1 || maze[row][col] == ' ' || checkParallelSurround(maze, row, col)){
       return 0;
     }
     maze[row][col] = ' ';
@@ -42,6 +42,12 @@ class MazeGenerator{
       returnNum += removeAt(maze, row, col-1, "right");
     }
     return returnNum;
+  }
+  private static boolean checkParallelSurround(char[][] maze, int row, int col){
+    if ((maze[row-1][col] == ' ' && maze[row][col+1] == ' ') || (maze[row-1][col] == ' ' && maze[row][col-1] == ' ') || (maze[row+1][col] == ' ' && maze[row][col+1] == ' ') || (maze[row+1][col] == ' ' && maze[row][col-1] == ' ')){
+      return true;
+    }
+    return false;
   }
   public static void main(String[] args) {
     char[][] maze = new char[8][8];
