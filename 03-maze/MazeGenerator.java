@@ -43,12 +43,16 @@ class MazeGenerator{
       switch (toDo.get(i)) {
         case "goUp":
           removeAt(maze, row-1, col, "down");
+          break;
         case "goDown":
           removeAt(maze, row+1, col, "up");
+          break;
         case "goLeft":
           removeAt(maze, row, col-1, "right");
+          break;
         default:
           removeAt(maze, row, col+1, "left");
+          break;
       }
     }
   }
