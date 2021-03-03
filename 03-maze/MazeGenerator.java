@@ -8,12 +8,6 @@ class MazeGenerator{
       List<String> toDo = Arrays.asList(toDoArray);
       processInstruct(maze, toDo, startrow, startcol);
     }
-    for (int i = 0; i<maze.length; i++){
-      for (int v = 0; v<maze[0].length; v++){
-        System.out.print(maze[i][v]);
-      }
-      System.out.println();
-    }
   }
 
   private static void removeAt(char[][] maze, int row, int col, String direction){
@@ -74,15 +68,5 @@ class MazeGenerator{
       returnVal++;
     }
     return returnVal > 1;
-  }
-
-  public static void main(String[] args) {
-    char[][] maze = new char[8][8];
-    for (int i = 0; i<maze.length; i++){
-      for (int v = 0; v<maze[0].length; v++){
-        maze[i][v] = '#';
-      }
-    }
-    generate(maze, maze.length, maze[0].length, 4, 4);
   }
 }
