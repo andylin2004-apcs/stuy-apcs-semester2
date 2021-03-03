@@ -6,19 +6,7 @@ class MazeGenerator{
       maze[startrow][startcol] = ' ';
       String[] toDoArray = new String[]{"goUp", "goDown", "goLeft", "goRight"};
       List<String> toDo = Arrays.asList(toDoArray);
-      Collections.shuffle(toDo);
-      for (int i = 0; i<4; i++){
-        switch (toDo.get(i)) {
-          case "goUp":
-            removeAt(maze, startrow-1, startcol, "down");
-          case "goDown":
-            removeAt(maze, startrow+1, startcol, "up");
-          case "goLeft":
-            removeAt(maze, startrow, startcol-1, "right");
-          default:
-            removeAt(maze, startrow, startcol+1, "left");
-        }
-      }
+      processInstruct(maze, toDo, startrow, startcol);
     }
     for (int i = 0; i<maze.length; i++){
       for (int v = 0; v<maze[0].length; v++){
@@ -39,7 +27,6 @@ class MazeGenerator{
       System.out.println();
     }
     System.out.println();
-    int returnNum = 0;
     ArrayList<String> toDo = new ArrayList<String>();
     if (!direction.equals("down")){
       toDo.add("goDown");
@@ -53,7 +40,13 @@ class MazeGenerator{
     if (!direction.equals("left")){
       toDo.add("goLeft");
     }
-    for (int i = 0; i<3; i++){
+    processInstruct(maze, toDo, row, col);
+    return 0;
+  }
+
+  private static void processInstruct(char[][] maze, List<String> toDo, int row, int col){
+    Collections.shuffle(toDo);
+    for (int i = 0; i<toDo.size(); i++){
       switch (toDo.get(i)) {
         case "goUp":
           removeAt(maze, row-1, col, "down");
@@ -65,7 +58,6 @@ class MazeGenerator{
           removeAt(maze, row, col+1, "left");
       }
     }
-    return returnNum;
   }
 
   private static boolean checkAdjacents(char[][] maze, int row, int col){
