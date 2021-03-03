@@ -15,33 +15,32 @@ class MazeGenerator{
       System.out.println();
     }
   }
-  private static int removeAt(char[][] maze, int row, int col, String direction){
-    if (row == 0 || col == 0 || row == maze.length-1 || col == maze[0].length-1 || maze[row][col] == ' ' || checkAdjacents(maze, row, col)){
-      return 0;
-    }
-    maze[row][col] = ' ';
-    for (int i = 0; i<maze.length; i++){
-      for (int v = 0; v<maze[0].length; v++){
-        System.out.print(maze[i][v]);
+
+  private static void removeAt(char[][] maze, int row, int col, String direction){
+    if (!(row == 0 || col == 0 || row == maze.length-1 || col == maze[0].length-1 || maze[row][col] == ' ' || checkAdjacents(maze, row, col))){
+      maze[row][col] = ' ';
+      for (int i = 0; i<maze.length; i++){
+        for (int v = 0; v<maze[0].length; v++){
+          System.out.print(maze[i][v]);
+        }
+        System.out.println();
       }
       System.out.println();
+      ArrayList<String> toDo = new ArrayList<String>();
+      if (!direction.equals("down")){
+        toDo.add("goDown");
+      }
+      if (!direction.equals("up")){
+        toDo.add("goUp");
+      }
+      if (!direction.equals("right")){
+        toDo.add("goRight");
+      }
+      if (!direction.equals("left")){
+        toDo.add("goLeft");
+      }
+      processInstruct(maze, toDo, row, col);
     }
-    System.out.println();
-    ArrayList<String> toDo = new ArrayList<String>();
-    if (!direction.equals("down")){
-      toDo.add("goDown");
-    }
-    if (!direction.equals("up")){
-      toDo.add("goUp");
-    }
-    if (!direction.equals("right")){
-      toDo.add("goRight");
-    }
-    if (!direction.equals("left")){
-      toDo.add("goLeft");
-    }
-    processInstruct(maze, toDo, row, col);
-    return 0;
   }
 
   private static void processInstruct(char[][] maze, List<String> toDo, int row, int col){
