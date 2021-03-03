@@ -40,17 +40,30 @@ class MazeGenerator{
     }
     System.out.println();
     int returnNum = 0;
+    ArrayList<String> toDo = new ArrayList<String>();
     if (!direction.equals("down")){
-      returnNum += removeAt(maze, row+1, col, "up");
+      toDo.add("goDown");
     }
     if (!direction.equals("up")){
-      returnNum += removeAt(maze, row-1, col, "down");
+      toDo.add("goUp");
     }
     if (!direction.equals("right")){
-      returnNum += removeAt(maze, row, col+1, "left");
+      toDo.add("goRight");
     }
     if (!direction.equals("left")){
-      returnNum += removeAt(maze, row, col-1, "right");
+      toDo.add("goLeft");
+    }
+    for (int i = 0; i<3; i++){
+      switch (toDo.get(i)) {
+        case "goUp":
+          removeAt(maze, row-1, col, "down");
+        case "goDown":
+          removeAt(maze, row+1, col, "up");
+        case "goLeft":
+          removeAt(maze, row, col-1, "right");
+        default:
+          removeAt(maze, row, col+1, "left");
+      }
     }
     return returnNum;
   }
