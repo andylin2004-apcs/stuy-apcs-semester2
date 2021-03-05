@@ -7,6 +7,8 @@ class USACO{
   public static int bronze(String filename) throws FileNotFoundException{
     Scanner in = new Scanner(new File(filename));
     ArrayList<ArrayList<Integer>> field = new ArrayList<ArrayList<Integer>>();
+    String info = in.nextLine();
+    System.out.println(info);
     while (in.hasNextLine()){
       String read = in.nextLine();
       field.add(new ArrayList<Integer>());
@@ -19,5 +21,9 @@ class USACO{
   public static long silver(String filename) throws FileNotFoundException{
     Scanner in = new Scanner(new File(filename));
     return 0;
+  }
+
+  public static void main(String[] args) throws FileNotFoundException{
+    bronze("data1.dat");
   }
 }
