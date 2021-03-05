@@ -26,6 +26,7 @@ class USACO{
       while(read.hasNext()){
         instructLine.add(Integer.parseInt(read.next()));
       }
+      instruct.add(instructLine);
     }
     return 0;
   }
