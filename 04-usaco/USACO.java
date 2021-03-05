@@ -7,6 +7,7 @@ class USACO{
   public static int bronze(String filename) throws FileNotFoundException{
     Scanner in = new Scanner(new File(filename));
     ArrayList<ArrayList<Integer>> field = new ArrayList<ArrayList<Integer>>();
+    ArrayList<ArrayList<Integer>> instruct = new ArrayList<ArrayList<Integer>>();
     Scanner initData = new Scanner(in.nextLine());
     int row = Integer.parseInt(initData.next());
     int col = Integer.parseInt(initData.next());
@@ -17,6 +18,13 @@ class USACO{
       field.add(new ArrayList<Integer>());
       while(read.hasNext()){
         field.get(i).add(Integer.parseInt(read.next()));
+      }
+    }
+    while(in.hasNextLine()){
+      Scanner read = new Scanner(in.nextLine());
+      ArrayList<Integer> instructLine = new ArrayList<Integer>();
+      while(read.hasNext()){
+        instructLine.add(Integer.parseInt(read.next()));
       }
     }
     return 0;
