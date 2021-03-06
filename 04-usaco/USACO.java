@@ -30,8 +30,16 @@ class USACO{
           max = Math.max(max, field.get(i).get(v));
         }
       }
-      
+      max -= removeBy;
+      for (int i = Rs; i<Rs+3; i++){
+        for (int v = Cs; v<Cs+3; v++){
+          if (field.get(i).get(v) > max){
+            field.get(i).set(v, max);
+          }
+        }
+      }
     }
+    System.out.println(field);
     return 0;
   }
   public static long silver(String filename) throws FileNotFoundException{
