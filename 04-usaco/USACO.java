@@ -39,8 +39,15 @@ class USACO{
         }
       }
     }
-    System.out.println(field);
-    return 0;
+    int total = 0;
+    for (int i = 0; i<row+1; i++){
+      for (int v = 0; v<col+1; v++){
+        if (goalElev > field.get(i).get(v)){
+          total += goalElev - field.get(i).get(v);
+        }
+      }
+    }
+    return total*72*72;
   }
   public static long silver(String filename) throws FileNotFoundException{
     Scanner in = new Scanner(new File(filename));
