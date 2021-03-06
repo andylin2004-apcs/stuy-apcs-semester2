@@ -40,8 +40,8 @@ class USACO{
       }
     }
     int total = 0;
-    for (int i = 0; i<row+1; i++){
-      for (int v = 0; v<col+1; v++){
+    for (int i = 0; i<row; i++){
+      for (int v = 0; v<col; v++){
         if (goalElev > field.get(i).get(v)){
           total += goalElev - field.get(i).get(v);
         }
@@ -55,6 +55,6 @@ class USACO{
   }
 
   public static void main(String[] args) throws FileNotFoundException{
-    bronze("data1.dat");
+    System.out.println(bronze("data1.dat"));
   }
 }
