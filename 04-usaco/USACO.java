@@ -32,7 +32,24 @@ class USACO{
   }
   public static long silver(String filename) throws FileNotFoundException{
     Scanner in = new Scanner(new File(filename));
-    return 0;
+    Scanner initData = new Scanner(in.nextLine());
+    int row = Integer.parseInt(initData.next());
+    int col = Integer.parseInt(initData.next());
+    int timeLimit = Integer.parseInt(initData.next());
+    ArrayList<ArrayList<Integer>> field = new ArrayList<ArrayList<Integer>>();
+    for (int i = 0; i<row; i++){
+      Scanner read = new Scanner(in.nextLine());
+      ArrayList<Integer> fieldLine = new ArrayList<Integer>();
+      while(read.hasNext()){
+        fieldLine.add(Integer.parseInt(read.next()));
+      }
+      field.add(fieldLine);
+    }
+    initData = new Scanner(in.nextLine());
+    int startRow = Integer.parseInt(initData.next());
+    int startCol = Integer.parseInt(initData.next());
+    int endRow = Integer.parseInt(initData.next());
+    int endCol = Integer.parseInt(initData.next());
   }
 
   public static void main(String[] args) throws FileNotFoundException{
