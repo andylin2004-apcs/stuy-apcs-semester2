@@ -39,11 +39,11 @@ class USACO{
     int timeLimit = Integer.parseInt(initData.next());
     ArrayList<ArrayList<Integer>> field = new ArrayList<ArrayList<Integer>>();
     for (int i = 0; i<row; i++){
-      Scanner read = new Scanner(in.nextLine());
+      String read = in.nextLine();
       ArrayList<Integer> fieldLine = new ArrayList<Integer>();
-      while(read.hasNext()){
-        String next = read.next();
-        if (next.equals("*")){
+      for(int lineChar = 0; lineChar<read.length(); lineChar++){
+        char next = read.charAt(lineChar);
+        if (next == '*'){
           fieldLine.add(-1);
         }else{
           fieldLine.add(0);
@@ -51,11 +51,13 @@ class USACO{
       }
       field.add(fieldLine);
     }
+    System.out.println(field);
     initData = new Scanner(in.nextLine());
     int startRow = Integer.parseInt(initData.next());
     int startCol = Integer.parseInt(initData.next());
     int endRow = Integer.parseInt(initData.next());
     int endCol = Integer.parseInt(initData.next());
+    field.get(startRow).set(startCol, 1);
     for (int i = 0; i<timeLimit; i++){
       ArrayList<ArrayList<Integer>> fieldEdited = new ArrayList<ArrayList<Integer>>();
       for (int rowHere = 0; row<field.size(); row++){
@@ -65,7 +67,6 @@ class USACO{
         }
         fieldEdited.add(fieldLine);
       }
-      field.get(startRow).set(startCol, 1);
       for (int rowHere = 0; row<field.size(); row++){
         for (int colHere = 0; col<field.get(0).size(); col++){
           if (field.get(row).get(col) > 0){
@@ -90,6 +91,6 @@ class USACO{
   }
 
   public static void main(String[] args) throws FileNotFoundException{
-    bronze("data1.dat");
+    silver("data2.dat");
   }
 }
