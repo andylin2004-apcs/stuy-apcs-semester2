@@ -51,7 +51,6 @@ class USACO{
       }
       field.add(fieldLine);
     }
-    System.out.println(field);
     initData = new Scanner(in.nextLine());
     int startRow = Integer.parseInt(initData.next());
     int startCol = Integer.parseInt(initData.next());
@@ -67,7 +66,6 @@ class USACO{
         }
         fieldEdited.add(fieldLine);
       }
-      System.out.println(" "+fieldEdited);
       for (int rowHere = 0; rowHere<field.size(); rowHere++){
         for (int colHere = 0; colHere<field.get(0).size(); colHere++){
           if (field.get(rowHere).get(colHere) > 0){
@@ -87,15 +85,8 @@ class USACO{
           }
         }
       }
-      // System.out.println("e"+fieldEdited);
       field = (ArrayList<ArrayList<Integer>>)fieldEdited.clone();
     }
-    System.out.println(field);
-    System.out.println(field.get(endRow-1).get(endCol-1));
     return field.get(endRow-1).get(endCol-1);
-  }
-
-  public static void main(String[] args) throws FileNotFoundException{
-    silver("data3.dat");
   }
 }
