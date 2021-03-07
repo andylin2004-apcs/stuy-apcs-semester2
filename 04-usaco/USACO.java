@@ -72,16 +72,16 @@ class USACO{
         for (int colHere = 0; colHere<field.get(0).size(); colHere++){
           if (field.get(rowHere).get(colHere) > 0){
             if (rowHere != 0 && fieldEdited.get(rowHere-1).get(colHere) != -1){
-              fieldEdited.get(rowHere).set(colHere, fieldEdited.get(rowHere).get(colHere)+fieldEdited.get(rowHere-1).get(colHere));
+              fieldEdited.get(rowHere-1).set(colHere, field.get(rowHere).get(colHere)+fieldEdited.get(rowHere-1).get(colHere));
             }
             if (colHere != 0 && fieldEdited.get(rowHere).get(colHere-1) != -1){
-              fieldEdited.get(rowHere).set(colHere, fieldEdited.get(rowHere).get(colHere)+fieldEdited.get(rowHere).get(colHere-1));
+              fieldEdited.get(rowHere).set(colHere-1, field.get(rowHere).get(colHere)+fieldEdited.get(rowHere).get(colHere-1));
             }
             if (rowHere != field.size()-1 && fieldEdited.get(rowHere+1).get(colHere) != -1){
-              fieldEdited.get(rowHere).set(colHere, fieldEdited.get(rowHere).get(colHere)+fieldEdited.get(rowHere+1).get(colHere));
+              fieldEdited.get(rowHere+1).set(colHere, field.get(rowHere).get(colHere)+fieldEdited.get(rowHere+1).get(colHere));
             }
             if (colHere != field.get(0).size()-1 && fieldEdited.get(rowHere).get(colHere+1) != -1){
-              fieldEdited.get(rowHere).set(colHere, fieldEdited.get(rowHere).get(colHere)+fieldEdited.get(rowHere).get(colHere+1));
+              fieldEdited.get(rowHere).set(colHere+1, field.get(rowHere).get(colHere)+fieldEdited.get(rowHere).get(colHere+1));
             }
           }
         }
@@ -90,7 +90,8 @@ class USACO{
       field = (ArrayList<ArrayList<Integer>>)fieldEdited.clone();
     }
     System.out.println(field);
-    return field.get(endRow).get(endCol);
+    System.out.println(field.get(endRow-1).get(endCol-1));
+    return field.get(endRow-1).get(endCol-1);
   }
 
   public static void main(String[] args) throws FileNotFoundException{
