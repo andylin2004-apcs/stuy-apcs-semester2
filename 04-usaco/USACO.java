@@ -57,36 +57,39 @@ class USACO{
     int startCol = Integer.parseInt(initData.next());
     int endRow = Integer.parseInt(initData.next());
     int endCol = Integer.parseInt(initData.next());
-    field.get(startRow).set(startCol, 1);
+    field.get(startRow-1).set(startCol-1, 1);
     for (int i = 0; i<timeLimit; i++){
       ArrayList<ArrayList<Integer>> fieldEdited = new ArrayList<ArrayList<Integer>>();
-      for (int rowHere = 0; row<field.size(); row++){
+      for (int rowHere = 0; rowHere<field.size(); rowHere++){
         ArrayList<Integer> fieldLine = new ArrayList<Integer>();
-        for (int colHere = 0; col<field.get(0).size(); col++){
-          fieldLine.add(field.get(row).get(col));
+        for (int colHere = 0; colHere<field.get(0).size(); colHere++){
+          fieldLine.add(field.get(rowHere).get(colHere));
         }
         fieldEdited.add(fieldLine);
       }
-      for (int rowHere = 0; row<field.size(); row++){
-        for (int colHere = 0; col<field.get(0).size(); col++){
-          if (field.get(row).get(col) > 0){
-            if (row != 0 && fieldEdited.get(row-1).get(col) != -1){
-              fieldEdited.get(row).set(col, fieldEdited.get(row).get(col)+fieldEdited.get(row-1).get(col));
+      System.out.println(" "+fieldEdited);
+      for (int rowHere = 0; rowHere<field.size(); rowHere++){
+        for (int colHere = 0; colHere<field.get(0).size(); colHere++){
+          if (field.get(rowHere).get(colHere) > 0){
+            if (rowHere != 0 && fieldEdited.get(rowHere-1).get(colHere) != -1){
+              fieldEdited.get(rowHere).set(colHere, fieldEdited.get(rowHere).get(colHere)+fieldEdited.get(rowHere-1).get(colHere));
             }
-            if (col != 0 && fieldEdited.get(row).get(col-1) != -1){
-              fieldEdited.get(row).set(col, fieldEdited.get(row).get(col)+fieldEdited.get(row).get(col-1));
+            if (colHere != 0 && fieldEdited.get(rowHere).get(colHere-1) != -1){
+              fieldEdited.get(rowHere).set(colHere, fieldEdited.get(rowHere).get(colHere)+fieldEdited.get(rowHere).get(colHere-1));
             }
-            if (row != field.size()-1 && fieldEdited.get(row+1).get(col) != -1){
-              fieldEdited.get(row).set(col, fieldEdited.get(row).get(col)+fieldEdited.get(row+1).get(col));
+            if (rowHere != field.size()-1 && fieldEdited.get(rowHere+1).get(colHere) != -1){
+              fieldEdited.get(rowHere).set(colHere, fieldEdited.get(rowHere).get(colHere)+fieldEdited.get(rowHere+1).get(colHere));
             }
-            if (col != field.get(0).size()-1 && fieldEdited.get(row).get(col+1) != -1){
-              fieldEdited.get(row).set(col, fieldEdited.get(row).get(col)+fieldEdited.get(row).get(col+1));
+            if (colHere != field.get(0).size()-1 && fieldEdited.get(rowHere).get(colHere+1) != -1){
+              fieldEdited.get(rowHere).set(colHere, fieldEdited.get(rowHere).get(colHere)+fieldEdited.get(rowHere).get(colHere+1));
             }
           }
         }
       }
-      field = fieldEdited;
+      System.out.println("e"+fieldEdited);
+      field = (ArrayList<ArrayList<Integer>>)fieldEdited.clone();
     }
+    System.out.println(field);
     return field.get(endRow).get(endCol);
   }
 
