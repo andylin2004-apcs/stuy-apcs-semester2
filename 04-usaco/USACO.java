@@ -71,22 +71,23 @@ class USACO{
       for (int rowHere = 0; rowHere<field.size(); rowHere++){
         for (int colHere = 0; colHere<field.get(0).size(); colHere++){
           if (field.get(rowHere).get(colHere) > 0){
-            if (rowHere != 0 && fieldEdited.get(rowHere-1).get(colHere) != -1){
+            if (rowHere != 0 && field.get(rowHere-1).get(colHere) != -1){
               fieldEdited.get(rowHere-1).set(colHere, field.get(rowHere).get(colHere)+fieldEdited.get(rowHere-1).get(colHere));
             }
-            if (colHere != 0 && fieldEdited.get(rowHere).get(colHere-1) != -1){
+            if (colHere != 0 && field.get(rowHere).get(colHere-1) != -1){
               fieldEdited.get(rowHere).set(colHere-1, field.get(rowHere).get(colHere)+fieldEdited.get(rowHere).get(colHere-1));
             }
-            if (rowHere != field.size()-1 && fieldEdited.get(rowHere+1).get(colHere) != -1){
+            if (rowHere != field.size()-1 && field.get(rowHere+1).get(colHere) != -1){
               fieldEdited.get(rowHere+1).set(colHere, field.get(rowHere).get(colHere)+fieldEdited.get(rowHere+1).get(colHere));
             }
-            if (colHere != field.get(0).size()-1 && fieldEdited.get(rowHere).get(colHere+1) != -1){
+            if (colHere != field.get(0).size()-1 && field.get(rowHere).get(colHere+1) != -1){
               fieldEdited.get(rowHere).set(colHere+1, field.get(rowHere).get(colHere)+fieldEdited.get(rowHere).get(colHere+1));
             }
+            fieldEdited.get(rowHere).set(colHere, 0);
           }
         }
       }
-      System.out.println("e"+fieldEdited);
+      // System.out.println("e"+fieldEdited);
       field = (ArrayList<ArrayList<Integer>>)fieldEdited.clone();
     }
     System.out.println(field);
@@ -95,6 +96,6 @@ class USACO{
   }
 
   public static void main(String[] args) throws FileNotFoundException{
-    silver("data2.dat");
+    silver("data3.dat");
   }
 }
