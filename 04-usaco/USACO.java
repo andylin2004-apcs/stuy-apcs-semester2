@@ -108,8 +108,4 @@ class USACO{
     }
     return field.get(endRow-1).get(endCol-1);
   }
-
-  public static void main(String[] args) throws FileNotFoundException{
-    System.out.println(bronze("data1.dat"));
-  }
 }
