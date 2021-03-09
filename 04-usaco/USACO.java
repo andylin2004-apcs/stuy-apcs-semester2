@@ -22,13 +22,32 @@ class USACO{
     }
     while(in.hasNextLine()){
       Scanner read = new Scanner(in.nextLine());
-      ArrayList<Integer> instructLine = new ArrayList<Integer>();
-      while(read.hasNext()){
-        instructLine.add(Integer.parseInt(read.next()));
+      int rowStart = Integer.parseInt(read.next())-1;
+      int colStart = Integer.parseInt(read.next())-1;
+      int removeBy = Integer.parseInt(read.next());
+      int max = -1;
+      for (int i = rowStart; i<rowStart+3; i++){
+        for (int v = colStart; v<colStart+3; v++){
+          max = Math.max(max, field.get(i).get(v));
+        }
       }
-      instruct.add(instructLine);
+      for (int i = rowStart; i<rowStart+3; i++){
+        for (int v = colStart; v<colStart+3; v++){
+          if (field.get(i).get(v) > max-removeBy){
+            field.get(i).set(v, max-removeBy);
+          }
+        }
+      }
     }
-    return 0;
+    int total = 0;
+    for (int i = 0; i<field.size(); i++){
+      for (int v = 0; v<field.get(0).size(); v++){
+        if (field.get(i).get(v) < goalElev){
+          total += goalElev - field.get(i).get(v);
+        }
+      }
+    }
+    return total * 72 * 72;
   }
 
   public static long silver(String filename) throws FileNotFoundException{
@@ -88,5 +107,9 @@ class USACO{
       field = (ArrayList<ArrayList<Integer>>)fieldEdited.clone();
     }
     return field.get(endRow-1).get(endCol-1);
+  }
+
+  public static void main(String[] args) throws FileNotFoundException{
+    System.out.println(bronze("data1.dat"));
   }
 }
