@@ -13,25 +13,13 @@ class Preliminary{
   public static int partition ( int [] data, int start, int end){
     Random rng = new Random();
     int randomNum = rng.nextInt(end-start)+start;
-    System.out.println(data[randomNum]);
-    for (int i = start; i<end+1; i++){
-      if (i == randomNum){
-        continue;
-      }
-      if (data[i] > data[randomNum] && i < randomNum){
-        int toMove = data[i];
-        for (int arrayStop=i+1; arrayStop<randomNum+1; arrayStop++){
-          data[arrayStop-1] = data[arrayStop];
-        }
-        data[randomNum] = toMove;
-        randomNum -= 1;
-        i -= 1;
-      }else{
-
+    int pivotPoint = 0;
+    for (int i = 0; i<data.length; i++){
+      if (data[i] < data[randomNum]){
+        pivotPoint++;
       }
     }
-    System.out.println(Arrays.toString(data)+"");
-    return 0;
+    return pivotPoint;
   }
   public static void main(String[] args) {
     partition(new int[]{4,3,2,1}, 0, 3);
