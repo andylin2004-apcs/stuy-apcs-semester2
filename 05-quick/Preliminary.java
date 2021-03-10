@@ -19,6 +19,7 @@ class Preliminary{
         int temp = data[randomNum];
         data[randomNum] = data[i];
         data[i] = data[randomNum];
+        randomNum = i;
       }
     }
     System.out.println(data[randomNum]+" "+pivotPoint);
