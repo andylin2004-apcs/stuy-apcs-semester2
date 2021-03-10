@@ -23,20 +23,16 @@ class Preliminary{
     System.out.println(Arrays.toString(data));
 
     for(int i = start+1; i<end+1; i++){
-      if (addLeftAt >= end+1 || addRightAt <= start){
-        break;
-      }
+
+      // if (addLeftAt >= end+1 || addRightAt <= start){
+      //   break;
+      // }
+      System.out.print("meems");
       int random2 = rng.nextInt(2);
       if (data[i] < randomNum || (data[i] == randomNum && random2 == 0)){
         addLeftAt++;
         temp = data[addLeftAt];
         data[addLeftAt] = data[i];
-        data[i] = temp;
-        i--;
-      }else if (data[i] > randomNum || (data[i] == randomNum && random2 == 1)){
-        addRightAt--;
-        temp = data[addRightAt];
-        data[addRightAt] = data[i];
         data[i] = temp;
         i--;
       }
