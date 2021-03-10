@@ -13,29 +13,46 @@ class Preliminary{
   public static int partition ( int [] data, int start, int end){
     Random rng = new Random();
     int randomNum = rng.nextInt(end-start+1)+start;
-    // System.out.println(Arrays.toString(data));
-    for (int i = start; i<end+1; i++){
-      if ((data[randomNum] > data[i] && randomNum < i) || (data[randomNum] < data[i] && randomNum > i)){
-        int temp = data[randomNum];
-        data[randomNum] = data[i];
-        data[i] = temp;
-        randomNum = i;
-        // System.out.println(Arrays.toString(data));
+    int temp = data[randomNum];
+    int addLeftAt = 0;
+    int addRightAt = end+1;
+    data[randomNum] = data[0];
+    data[0] = temp;
+    randomNum = data[0];
+    System.out.println(randomNum);
+    System.out.println(Arrays.toString(data));
+
+    for(int i = start+1; i<end+1; i++){
+      if (addLeftAt >= end+1 || addRightAt <= start){
+        break;
       }
-    }
-    for (int i = start; i<end+1; i++){
-      if ((data[randomNum] > data[i] && randomNum < i) || (data[randomNum] < data[i] && randomNum > i)){
-        int temp = data[randomNum];
-        data[randomNum] = data[i];
+      int random2 = rng.nextInt(2);
+      if (data[i] < randomNum || (data[i] == randomNum && random2 == 0)){
+        addLeftAt++;
+        temp = data[addLeftAt];
+        data[addLeftAt] = data[i];
         data[i] = temp;
-        randomNum = i;
-        // System.out.println(Arrays.toString(data));
+        i--;
+      }else if (data[i] > randomNum || (data[i] == randomNum && random2 == 1)){
+        addRightAt--;
+        temp = data[addRightAt];
+        data[addRightAt] = data[i];
+        data[i] = temp;
+        i--;
       }
+      System.out.println(Arrays.toString(data));
+      System.out.println(addLeftAt+""+addRightAt);
+
     }
-    // System.out.println(Arrays.toString(data)+data[randomNum]+""+randomNum);
+    temp = data[addLeftAt];
+    data[addLeftAt] = randomNum;
+    data[0] = temp;
+    System.out.println(Arrays.toString(data));
+    System.out.println(addLeftAt+""+addRightAt);
     return randomNum-start;
   }
+
   public static void main(String[] args) {
-    partition(new int[]{40,40,40,1}, 0, 2);
+    partition(new int[]{4,40,20,1,69}, 0, 2);
   }
 }
