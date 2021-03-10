@@ -13,14 +13,14 @@ class Preliminary{
   public static int partition ( int [] data, int start, int end){
     Random rng = new Random();
     int randomNum = rng.nextInt(end-start+1)+start;
-    System.out.println(Arrays.toString(data));
+    // System.out.println(Arrays.toString(data));
     for (int i = 0; i<data.length; i++){
       if ((data[randomNum] > data[i] && randomNum < i) || (data[randomNum] < data[i] && randomNum > i)){
         int temp = data[randomNum];
         data[randomNum] = data[i];
         data[i] = temp;
         randomNum = i;
-        System.out.println(Arrays.toString(data));
+        // System.out.println(Arrays.toString(data));
       }
     }
     for (int i = 0; i<data.length; i++){
@@ -29,13 +29,13 @@ class Preliminary{
         data[randomNum] = data[i];
         data[i] = temp;
         randomNum = i;
-        System.out.println(Arrays.toString(data));
+        // System.out.println(Arrays.toString(data));
       }
     }
-    System.out.println(Arrays.toString(data)+data[randomNum]+""+randomNum);
-    return randomNum;
+    // System.out.println(Arrays.toString(data)+data[randomNum]+""+randomNum);
+    return randomNum-start;
   }
   public static void main(String[] args) {
-    partition(new int[]{40,69,2,1}, 0, 3);
+    partition(new int[]{40,40,40,1}, 0, 2);
   }
 }
