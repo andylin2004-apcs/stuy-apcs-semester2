@@ -12,13 +12,16 @@ class Preliminary{
     */
   public static int partition ( int [] data, int start, int end){
     Random rng = new Random();
-    int randomNum = rng.nextInt(end-start)+start;
+    int randomNum = rng.nextInt(end-start+1)+start;
     int pivotPoint = 0;
     for (int i = 0; i<data.length; i++){
-      if (data[i] < data[randomNum]){
-        pivotPoint++;
+      if ((data[randomNum] > data[i] && randomNum < i) || (data[randomNum] < data[i] && randomNum > i)){
+        int temp = data[randomNum];
+        data[randomNum] = data[i];
+        data[i] = data[randomNum];
       }
     }
+    System.out.println(data[randomNum]+" "+pivotPoint);
     return pivotPoint;
   }
   public static void main(String[] args) {
