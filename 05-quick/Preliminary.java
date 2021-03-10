@@ -24,9 +24,9 @@ class Preliminary{
 
     for(int i = start+1; i<end+1; i++){
 
-      // if (addLeftAt >= end+1 || addRightAt <= start){
-      //   break;
-      // }
+      if (addLeftAt >= end || addRightAt <= start){
+        break;
+      }
       System.out.print("meems");
       int random2 = rng.nextInt(2);
       if (data[i] < randomNum || (data[i] == randomNum && random2 == 0)){

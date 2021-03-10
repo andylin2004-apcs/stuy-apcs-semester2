@@ -1,6 +1,13 @@
 # Compiled class file
 *.class
 
+# Mac file
+.DS_Store
+
+# test files
+*.txt
+*.dat
+
 # Log file
 *.log
 
