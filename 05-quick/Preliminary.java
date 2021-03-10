@@ -22,7 +22,7 @@ class Preliminary{
     System.out.println(randomNum);
     System.out.println(Arrays.toString(data));
 
-    for(int i = start+1; i<end+1; i++){d
+    for(int i = start+1; i<end+1; i++){
       if (addLeftAt >= end || addRightAt <= start){
         break;
       }
