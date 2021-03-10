@@ -13,19 +13,29 @@ class Preliminary{
   public static int partition ( int [] data, int start, int end){
     Random rng = new Random();
     int randomNum = rng.nextInt(end-start+1)+start;
-    int pivotPoint = 0;
+    System.out.println(Arrays.toString(data));
     for (int i = 0; i<data.length; i++){
       if ((data[randomNum] > data[i] && randomNum < i) || (data[randomNum] < data[i] && randomNum > i)){
         int temp = data[randomNum];
         data[randomNum] = data[i];
-        data[i] = data[randomNum];
+        data[i] = temp;
         randomNum = i;
+        System.out.println(Arrays.toString(data));
       }
     }
-    System.out.println(data[randomNum]+" "+pivotPoint);
-    return pivotPoint;
+    for (int i = 0; i<data.length; i++){
+      if ((data[randomNum] > data[i] && randomNum < i) || (data[randomNum] < data[i] && randomNum > i)){
+        int temp = data[randomNum];
+        data[randomNum] = data[i];
+        data[i] = temp;
+        randomNum = i;
+        System.out.println(Arrays.toString(data));
+      }
+    }
+    System.out.println(Arrays.toString(data)+data[randomNum]+""+randomNum);
+    return randomNum;
   }
   public static void main(String[] args) {
-    partition(new int[]{4,3,2,1}, 0, 3);
+    partition(new int[]{40,69,2,1}, 0, 3);
   }
 }
