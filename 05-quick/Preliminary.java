@@ -14,7 +14,7 @@ class Preliminary{
     Random rng = new Random();
     int randomNum = rng.nextInt(end-start+1)+start;
     // System.out.println(Arrays.toString(data));
-    for (int i = 0; i<data.length; i++){
+    for (int i = start; i<end+1; i++){
       if ((data[randomNum] > data[i] && randomNum < i) || (data[randomNum] < data[i] && randomNum > i)){
         int temp = data[randomNum];
         data[randomNum] = data[i];
@@ -23,7 +23,7 @@ class Preliminary{
         // System.out.println(Arrays.toString(data));
       }
     }
-    for (int i = 0; i<data.length; i++){
+    for (int i = start; i<end+1; i++){
       if ((data[randomNum] > data[i] && randomNum < i) || (data[randomNum] < data[i] && randomNum > i)){
         int temp = data[randomNum];
         data[randomNum] = data[i];
