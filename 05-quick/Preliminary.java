@@ -22,8 +22,7 @@ class Preliminary{
     System.out.println(randomNum);
     System.out.println(Arrays.toString(data));
 
-    for(int i = start+1; i<end+1; i++){
-
+    for(int i = start+1; i<end+1; i++){d
       if (addLeftAt >= end || addRightAt <= start){
         break;
       }
@@ -45,7 +44,7 @@ class Preliminary{
     data[0] = temp;
     System.out.println(Arrays.toString(data));
     System.out.println(addLeftAt+""+addRightAt);
-    return randomNum-start;
+    return addLeftAt;
   }
 
   public static void main(String[] args) {
