@@ -37,6 +37,6 @@ class Preliminary{
   }
 
   public static void main(String[] args) {
-    partition(new int[]{4,40,20,1,69}, 0, 2);
+    partition(new int[]{4,40,20,1,69}, 1, 3);
   }
 }
