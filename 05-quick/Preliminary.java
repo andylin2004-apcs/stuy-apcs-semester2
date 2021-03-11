@@ -12,39 +12,28 @@ class Preliminary{
     */
   public static int partition ( int [] data, int start, int end){
     Random rng = new Random();
-    int randomNum = rng.nextInt(end-start+1)+start;
-    int temp = data[randomNum];
-    int addLeftAt = 0;
-    int addRightAt = end+1;
-    data[randomNum] = data[0];
-    data[0] = temp;
-    randomNum = data[0];
-    System.out.println(randomNum);
+    int randomNum = rng.nextInt(end+1);
+    int temp = data[start];
+    data[start] = data[randomNum];
+    data[randomNum] = temp;
+    int pivot = data[start];
+    int addLeft = start;
+    System.out.println(pivot);
     System.out.println(Arrays.toString(data));
-
-    for(int i = start+1; i<end+1; i++){
-      if (addLeftAt >= end || addRightAt <= start){
-        break;
+    for (int interval = start+1; interval <= end; interval++){
+      if (data[interval] < pivot){
+        addLeft++;
+        temp = data[addLeft];
+        data[addLeft] = data[interval];
+        data[interval] = temp;
       }
-      System.out.print("meems");
-      int random2 = rng.nextInt(2);
-      if (data[i] < randomNum || (data[i] == randomNum && random2 == 0)){
-        addLeftAt++;
-        temp = data[addLeftAt];
-        data[addLeftAt] = data[i];
-        data[i] = temp;
-        i--;
-      }
-      System.out.println(Arrays.toString(data));
-      System.out.println(addLeftAt+""+addRightAt);
-
+      System.out.println(Arrays.toString(data)+addLeft);
     }
-    temp = data[addLeftAt];
-    data[addLeftAt] = randomNum;
-    data[0] = temp;
-    System.out.println(Arrays.toString(data));
-    System.out.println(addLeftAt+""+addRightAt);
-    return addLeftAt;
+    temp = data[addLeft];
+    data[addLeft] = pivot;
+    data[start] = temp;
+    System.out.println(Arrays.toString(data)+addLeft);
+    return addLeft;
   }
 
   public static void main(String[] args) {
