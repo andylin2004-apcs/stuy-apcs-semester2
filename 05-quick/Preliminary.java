@@ -35,8 +35,4 @@ class Preliminary{
     System.out.println(Arrays.toString(data)+addLeft);
     return addLeft;
   }
-
-  public static void main(String[] args) {
-    partition(new int[]{4,40,20,1,69}, 1, 3);
-  }
 }
