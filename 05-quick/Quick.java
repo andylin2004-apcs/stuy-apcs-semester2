@@ -34,8 +34,8 @@ class Quick{
       data[randomNum] = temp;
       int pivot = data[start];
       int addLeft = start;
-      System.out.println(pivot);
-      System.out.println(Arrays.toString(data));
+      // System.out.println(pivot);
+      // System.out.println(Arrays.toString(data));
       for (int interval = start+1; interval <= end; interval++){
         if (data[interval] < pivot || (data[interval] == pivot && rng.nextInt(2) == 0)){
           addLeft++;
@@ -43,12 +43,12 @@ class Quick{
           data[addLeft] = data[interval];
           data[interval] = temp;
         }
-        System.out.println(Arrays.toString(data)+addLeft);
+        // System.out.println(Arrays.toString(data)+addLeft);
       }
       temp = data[addLeft];
       data[addLeft] = pivot;
       data[start] = temp;
-      System.out.println(Arrays.toString(data)+addLeft);
+      // System.out.println(Arrays.toString(data)+addLeft);
       quicksort(data, start, addLeft-1);
       quicksort(data, addLeft+1, end);
     }
