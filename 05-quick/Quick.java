@@ -28,13 +28,13 @@ class Quick{
   public static void quicksort( int [] data, int start, int end){
     if (end-start+1 > 1){
       Random rng = new Random();
-      int randomNum = rng.nextInt(end+1);
+      int randomNum = rng.nextInt(end-start+1);
       int temp = data[start];
-      data[start] = data[randomNum];
-      data[randomNum] = temp;
+      data[start] = data[randomNum+start];
+      data[randomNum+start] = temp;
       int pivot = data[start];
       int addLeft = start;
-      // System.out.println(pivot);
+      // System.out.println(pivot+" "+start+" "+end);
       // System.out.println(Arrays.toString(data));
       for (int interval = start+1; interval <= end; interval++){
         if (data[interval] < pivot || (data[interval] == pivot && rng.nextInt(2) == 0)){
