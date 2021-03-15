@@ -8,7 +8,15 @@ class Quick{
   *@param k is 0 to data.length-1 inclusive
   *@postcondition The array can be modified. (If we did not want to modify the array, we could make a copy before we start the process)
   */
-  public static int quickselect(int []data, int k){ }
+  public static int quickselect(int[]data, int k){
+    return quickselect(data, 0, data.length, k);
+  }
+
+  public static void quicksort(int[] data){
+    int start = 0;
+    int end = data.length;
+    // partition(data, start, end);
+  }
 
   /*Modify the array such that:
   *1. A random index from start to end inclusive is chosen, the corresponding
@@ -18,7 +26,7 @@ class Quick{
   *4. Only the indices from start to end inclusive are considered in range
   *@return the index of the final position of the pivot element.
   */
-  public static int partition ( int [] data, int start, int end){
+  public static int quickselect( int [] data, int start, int end, int k){
     Random rng = new Random();
     int randomNum = rng.nextInt(end+1);
     int temp = data[start];
@@ -41,7 +49,12 @@ class Quick{
     data[addLeft] = pivot;
     data[start] = temp;
     System.out.println(Arrays.toString(data)+addLeft);
-    return addLeft;
+    if (pivot == k){
+      return addLeft;
+    }else if (k < pivot){
+      return quickselect(data, 0, addLeft, k);
+    }
+    return quickselect(data, addLeft, data.length, k);
   }
 
 }
