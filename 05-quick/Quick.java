@@ -14,9 +14,7 @@ class Quick{
   }
 
   public static void quicksort(int[] data){
-    int start = 0;
-    int end = data.length;
-    // partition(data, start, end);
+    quicksort(data, 0, data.length);
   }
 
   /*Modify the array such that:
@@ -55,5 +53,4 @@ class Quick{
       quicksort(data, addLeft+1, end);
     }
   }
-
 }
