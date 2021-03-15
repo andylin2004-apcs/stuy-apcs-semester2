@@ -9,12 +9,12 @@ class Quick{
   *@postcondition The array can be modified. (If we did not want to modify the array, we could make a copy before we start the process)
   */
   public static int quickselect(int[]data, int k){
-    quicksort(data, 0, data.length);
+    quicksort(data, 0, data.length-1);
     return data[k];
   }
 
   public static void quicksort(int[] data){
-    quicksort(data, 0, data.length);
+    quicksort(data, 0, data.length-1);
   }
 
   /*Modify the array such that:
