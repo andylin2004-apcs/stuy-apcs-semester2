@@ -5,7 +5,7 @@ class Merge{
     mergesort(data, 0, data.length-1);
   }
   public static int[] mergesort(int[] data, int low, int high){
-    System.out.println(high-low+1);
+    // System.out.println(high-low+1);
     if (high-low+1 > 1){
       int[] array1 = mergesort(data, low, Math.round((high-low)/2)+low);
       int[] array2 = mergesort(data, Math.round((high-low)/2)+low+1, high);
