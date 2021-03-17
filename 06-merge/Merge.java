@@ -21,7 +21,8 @@ class Merge{
           data[i] = array1[array1Slot];
           array1Slot++;
         }
-      }if (array1Slot<array1.length){
+      }
+      if (array1Slot<array1.length){
         for(/*see above*/; i<=high && array1Slot<array1.length; i++){
           data[i] = array1[array1Slot];
           array1Slot++;
