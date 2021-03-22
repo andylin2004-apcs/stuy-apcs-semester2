@@ -84,4 +84,9 @@ public class MyDeque<E>{
       throw new NoSuchElementException();
     }
   }
+  private void nullPointExc(E input){
+    if (input == null){
+      throw new NullPointerException();
+    }
+  }
 }
