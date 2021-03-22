@@ -73,4 +73,9 @@ public class MyDeque<E>{
     start = size;
     end = size+end;
   }
+  private void noSuchExc(){
+    if (size == 0){
+      throw new NullPointerException();
+    }
+  }
 }
