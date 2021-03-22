@@ -1,15 +1,14 @@
+@SuppressWarnings("unchecked")
 public class MyDeque<E>{
   private E[] data;
   private int size, start, end;
 
-  @SuppressWarnings("unchecked")
   public MyDeque(){
     data = (E[])new Object[10];
     size = 1;
     start = 5;
     end = 5;
   }
-  @SuppressWarnings("unchecked")
   public MyDeque(int initialCapacity){
     data = (E[])new Object[initialCapacity];
     size = 1;
@@ -31,20 +30,32 @@ public class MyDeque<E>{
   }
   public void addFirst(E element){
     if (start == 0){
-
+      resize();
     }
+    start--;
+    size++;
+    data[start] = element;
   }
-  public void addLast(E element){ }
+  public void addLast(E element){
+    if (end == data.length-1){
+      resize();
+    }
+    end++;
+    size++;
+    data[end] = element;
+  }
   public E removeFirst(){
     E returnData = data[start];
     data[start] = null;
     start++;
+    size--;
     return returnData;
   }
   public E removeLast(){
     E returnData = data[end];
     data[end] = null;
     end--;
+    size--;
     return returnData;
   }
   public E getFirst(){
@@ -54,10 +65,11 @@ public class MyDeque<E>{
     return data[end];
   }
   private void resize(){
-    E newData = new E[size*3];
+    E[] newData = (E[])new Object[size*3];
     for (int i = start; i<=end; i++){
       newData[size+i] = data[i];
     }
+    data = newData;
     start = size;
     end = size+end;
   }
