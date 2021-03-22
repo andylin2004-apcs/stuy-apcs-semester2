@@ -45,6 +45,7 @@ public class MyDeque<E>{
     data[end] = element;
   }
   public E removeFirst(){
+    noSuchExc();
     E returnData = data[start];
     data[start] = null;
     start++;
@@ -52,6 +53,7 @@ public class MyDeque<E>{
     return returnData;
   }
   public E removeLast(){
+    noSuchExc();
     E returnData = data[end];
     data[end] = null;
     end--;
@@ -59,9 +61,11 @@ public class MyDeque<E>{
     return returnData;
   }
   public E getFirst(){
+    noSuchExc();
     return data[start];
   }
   public E getLast(){
+    noSuchExc();
     return data[end];
   }
   private void resize(){
