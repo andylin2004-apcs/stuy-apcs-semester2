@@ -16,7 +16,9 @@ public class MyDeque<E>{
     start = Math.round(initialCapacity/2);
     end = Math.round(initialCapacity/2);
   }
-  public int size(){ }
+  public int size(){
+    return size;
+  }
   public String toString(){ }
   public void addFirst(E element){ }
   public void addLast(E element){ }
