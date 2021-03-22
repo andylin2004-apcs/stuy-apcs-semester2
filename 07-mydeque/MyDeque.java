@@ -37,7 +37,12 @@ public class MyDeque<E>{
     start++;
     return returnData;
   }
-  public E removeLast(){ }
+  public E removeLast(){
+    E returnData = data[end];
+    data[end] = null;
+    end--;
+    return returnData;
+  }
   public E getFirst(){ }
   public E getLast(){ }
 
