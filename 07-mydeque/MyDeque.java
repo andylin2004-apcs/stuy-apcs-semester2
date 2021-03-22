@@ -31,6 +31,7 @@ public class MyDeque<E>{
     return result+"}";
   }
   public void addFirst(E element){
+    nullPointExc(element);
     if (start == 0){
       resize();
     }
@@ -39,6 +40,7 @@ public class MyDeque<E>{
     data[start] = element;
   }
   public void addLast(E element){
+    nullPointExc(element);
     if (end == data.length-1){
       resize();
     }
