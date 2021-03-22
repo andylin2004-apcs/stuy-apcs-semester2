@@ -22,7 +22,7 @@ public class MyDeque<E>{
     String result = "{";
     for (int i = start; i<start+size; i++){
       result += data[i];
-      if (i<end){
+      if (i<end-1){
         result += ", ";
       }
     }
