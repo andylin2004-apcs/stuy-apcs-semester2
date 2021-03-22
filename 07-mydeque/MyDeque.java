@@ -3,8 +3,19 @@ public class MyDeque<E>{
   private int size, start, end;
 
   @SuppressWarnings("unchecked")
-  public MyDeque(){  }
-  public MyDeque(int initialCapacity){  }
+  public MyDeque(){
+    data = (E[])new Object[10];
+    size = 1;
+    start = 5;
+    end = 5;
+  }
+  @SuppressWarnings("unchecked")
+  public MyDeque(int initialCapacity){
+    data = (E[])new Object[initialCapacity];
+    size = 1;
+    start = Math.round(initialCapacity/2);
+    end = Math.round(initialCapacity/2);
+  }
   public int size(){ }
   public String toString(){ }
   public void addFirst(E element){ }
