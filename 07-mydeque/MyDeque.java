@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 @SuppressWarnings("unchecked")
 public class MyDeque<E>{
   private E[] data;
@@ -79,7 +81,7 @@ public class MyDeque<E>{
   }
   private void noSuchExc(){
     if (size == 0){
-      throw new NullPointerException();
+      throw new NoSuchElementException();
     }
   }
 }
