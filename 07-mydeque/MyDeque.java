@@ -19,7 +19,16 @@ public class MyDeque<E>{
   public int size(){
     return size;
   }
-  public String toString(){ }
+  public String toString(){
+    String result = "{";
+    for (int i = start; i<=end; i++){
+      result += data[i];
+      if (i<end){
+        result += ", ";
+      }
+    }
+    return result+"}";
+  }
   public void addFirst(E element){ }
   public void addLast(E element){ }
   public E removeFirst(){ }
