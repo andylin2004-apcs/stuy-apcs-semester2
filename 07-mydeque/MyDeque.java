@@ -5,13 +5,13 @@ public class MyDeque<E>{
 
   public MyDeque(){
     data = (E[])new Object[10];
-    size = 1;
+    size = 0;
     start = 5;
     end = 5;
   }
   public MyDeque(int initialCapacity){
     data = (E[])new Object[initialCapacity];
-    size = 1;
+    size = 0;
     start = Math.round(initialCapacity/2)-1;
     end = Math.round(initialCapacity/2)-1;
   }
@@ -20,7 +20,7 @@ public class MyDeque<E>{
   }
   public String toString(){
     String result = "{";
-    for (int i = start; i<=end; i++){
+    for (int i = start; i<start+size; i++){
       result += data[i];
       if (i<end){
         result += ", ";
