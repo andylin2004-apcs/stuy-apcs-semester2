@@ -12,10 +12,10 @@ public class MyDeque<E>{
     end = 5;
   }
   public MyDeque(int initialCapacity){
-    data = (E[])new Object[initialCapacity];
+    data = (E[])new Object[initialCapacity+4];
     size = 0;
-    start = Math.round(initialCapacity/2)-1;
-    end = Math.round(initialCapacity/2)-1;
+    start = Math.round(initialCapacity/2)+2;
+    end = Math.round(initialCapacity/2)+2;
   }
   public int size(){
     return size;
@@ -32,7 +32,7 @@ public class MyDeque<E>{
   }
   public void addFirst(E element){
     nullPointExc(element);
-    if (start == 0){
+    if (start <= 0){
       resize();
     }
     if (size != 0){
@@ -43,7 +43,7 @@ public class MyDeque<E>{
   }
   public void addLast(E element){
     nullPointExc(element);
-    if (end == data.length-1){
+    if (end >= data.length-1){
       resize();
     }
     if (size != 0){
@@ -77,7 +77,7 @@ public class MyDeque<E>{
     return data[end];
   }
   private void resize(){
-    E[] newData = (E[])new Object[size*3];
+    E[] newData = (E[])new Object[(size+1)*3];
     for (int i = 0; i<size; i++){
       newData[size+i] = data[i+start];
     }
