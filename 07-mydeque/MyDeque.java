@@ -24,7 +24,7 @@ public class MyDeque<E>{
     String result = "{";
     for (int i = start; i<start+size; i++){
       result += data[i];
-      if (i<end-1){
+      if (i<end){
         result += ", ";
       }
     }
@@ -35,7 +35,9 @@ public class MyDeque<E>{
     if (start == 0){
       resize();
     }
-    start--;
+    if (size != 0){
+      start--;
+    }
     size++;
     data[start] = element;
   }
@@ -44,7 +46,9 @@ public class MyDeque<E>{
     if (end == data.length-1){
       resize();
     }
-    end++;
+    if (size != 0){
+      end++;
+    }
     size++;
     data[end] = element;
   }
@@ -74,12 +78,12 @@ public class MyDeque<E>{
   }
   private void resize(){
     E[] newData = (E[])new Object[size*3];
-    for (int i = start; i<end; i++){
-      newData[size+i] = data[i];
+    for (int i = 0; i<size; i++){
+      newData[size+i] = data[i+start];
     }
     data = newData;
     start = size;
-    end = size+end;
+    end = size+start-1;
   }
   private void noSuchExc(){
     if (size == 0){
