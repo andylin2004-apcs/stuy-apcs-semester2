@@ -74,7 +74,7 @@ public class MyDeque<E>{
   }
   private void resize(){
     E[] newData = (E[])new Object[size*3];
-    for (int i = start; i<=end; i++){
+    for (int i = start; i<end; i++){
       newData[size+i] = data[i];
     }
     data = newData;
