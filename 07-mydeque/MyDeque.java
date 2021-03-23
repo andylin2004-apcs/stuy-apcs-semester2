@@ -12,10 +12,10 @@ public class MyDeque<E>{
     end = 5;
   }
   public MyDeque(int initialCapacity){
-    data = (E[])new Object[initialCapacity+4];
+    data = (E[])new Object[initialCapacity];
     size = 0;
-    start = Math.round(initialCapacity/2)+2;
-    end = Math.round(initialCapacity/2)+2;
+    start = Math.round(initialCapacity/2);
+    end = Math.round(initialCapacity/2);
   }
   public int size(){
     return size;
@@ -84,6 +84,9 @@ public class MyDeque<E>{
     data = newData;
     start = size;
     end = size+start-1;
+    if (size == 0){
+      end++;
+    }
   }
   private void noSuchExc(){
     if (size == 0){
