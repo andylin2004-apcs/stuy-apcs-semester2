@@ -16,14 +16,44 @@ public class Calculator{
     stack = new ArrayDeque<Double>();
 
     while (mathEq.hasNext()){
-      if (mathEq.next().equals("*")){
-        checkOperandCount();
-        double num1 = stack.removeLast();
-        double num2 = stack.removeLast();
+      String cur = mathEq.next();
+      switch(cur){
+        case "*":
+          checkOperandCount();
+          double num1 = stack.removeLast();
+          double num2 = stack.removeLast();
 
-        stack.addLast(num1*num2);
+          stack.addLast(num2*num1);
+          break;
+        case "/":
+          checkOperandCount();
+          num1 = stack.removeLast();
+          num2 = stack.removeLast();
+
+          stack.addLast(num2/num1);
+          break;
+        case "+":
+          checkOperandCount();
+          num1 = stack.removeLast();
+          num2 = stack.removeLast();
+
+          stack.addLast(num2+num1);
+          break;
+        case "-":
+          checkOperandCount();
+          num1 = stack.removeLast();
+          num2 = stack.removeLast();
+
+          stack.addLast(num2-num1);
+          break;
+        default:
+          stack.addLast(Double.parseDouble(cur));
       }
     }
+    if (stack.size() != 1){
+      throw new IllegalArgumentException();
+    }
+    return stack.getLast();
   }
 
   private static void checkOperandCount(){
