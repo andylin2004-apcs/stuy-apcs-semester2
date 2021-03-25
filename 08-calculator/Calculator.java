@@ -10,10 +10,9 @@ public class Calculator{
    *@throws IllegalArgumentException when there are too many or too few operands.
    *        Use the string parameter of your exception to indicate what happened.
   */
-  static ArrayDeque<Double> stack;
+  static ArrayDeque<Double> stack = new ArrayDeque<Double>();
   public static double eval(String s){
     Scanner mathEq = new Scanner(s);
-    stack = new ArrayDeque<Double>();
 
     while (mathEq.hasNext()){
       String cur = mathEq.next();
@@ -58,14 +57,15 @@ public class Calculator{
       }
     }
     if (stack.size() != 1){
-      throw new IllegalArgumentException();
+      stack.clear();
+      throw new IllegalArgumentException("Too little operands were inputted; please try again.");
     }
-    return stack.getLast();
+    return stack.removeLast();
   }
 
   private static void checkOperandCount(){
     if (stack.size() < 2){
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Too many operands were inputted; please try again.");
     }
   }
 }
