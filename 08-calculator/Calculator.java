@@ -1,3 +1,6 @@
+import java.util.Deque;
+import java.util.Scanner;
+
 public class Calculator{
   /*Evaluate a postfix expression stored in s.
    *Assume valid postfix notation, of ints doubles and operators separated by spaces.
