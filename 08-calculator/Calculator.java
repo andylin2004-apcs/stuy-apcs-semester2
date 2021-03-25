@@ -13,6 +13,7 @@ public class Calculator{
   static ArrayDeque<Double> stack = new ArrayDeque<Double>();
   public static double eval(String s){
     Scanner mathEq = new Scanner(s);
+    stack.clear();
 
     while (mathEq.hasNext()){
       String cur = mathEq.next();
@@ -57,10 +58,9 @@ public class Calculator{
       }
     }
     if (stack.size() != 1){
-      stack.clear();
       throw new IllegalArgumentException("Too little operands were inputted; please try again.");
     }
-    return stack.removeLast();
+    return stack.getLast();
   }
 
   private static void checkOperandCount(){
