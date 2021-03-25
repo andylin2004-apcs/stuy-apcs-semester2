@@ -46,6 +46,13 @@ public class Calculator{
 
           stack.addLast(num2-num1);
           break;
+        case "%":
+          checkOperandCount();
+          num1 = stack.removeLast();
+          num2 = stack.removeLast();
+
+          stack.addLast(num2%num1);
+          break;
         default:
           stack.addLast(Double.parseDouble(cur));
       }
