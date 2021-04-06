@@ -1,9 +1,11 @@
 import java.util.NoSuchElementException;
+import java.util.*;
 
 @SuppressWarnings("unchecked")
 public class MyDeque<E>{
   private E[] data;
   private int size, start, end;
+  private boolean firstDone = false;
 
   public MyDeque(){
     data = (E[])new Object[10];
@@ -22,8 +24,10 @@ public class MyDeque<E>{
   }
   public String toString(){
     String result = "{";
-    for (int i = start; i<start+size; i++){
-      result += data[i];
+    for (int i = start; i<end+1; i++){
+      if (data[i] != null){
+        result += data[i];
+      }
       if (i<end){
         result += ", ";
       }
@@ -31,26 +35,26 @@ public class MyDeque<E>{
     return result+"}";
   }
   public void addFirst(E element){
-    nullPointExc(element);
-    if (start <= 0){
-      resize();
-    }
-    if (size != 0){
+    if (firstDone){
       start--;
+    }
+    if (start == -1){
+      resize();
     }
     size++;
     data[start] = element;
+    firstDone = true;
   }
   public void addLast(E element){
-    nullPointExc(element);
-    if (end >= data.length-1){
-      resize();
-    }
-    if (size != 0){
+    if (firstDone){
       end++;
+    }
+    if (end == data.length){
+      resize();
     }
     size++;
     data[end] = element;
+    firstDone = true;
   }
   public E removeFirst(){
     noSuchExc();
@@ -77,7 +81,7 @@ public class MyDeque<E>{
     return data[end];
   }
   private void resize(){
-    E[] newData = (E[])new Object[(size+1)*3];
+    E[] newData = (E[])new Object[(size)*3];
     for (int i = 0; i<size; i++){
       newData[size+i] = data[i+start];
     }
@@ -97,5 +101,77 @@ public class MyDeque<E>{
     if (input == null){
       throw new NullPointerException();
     }
+  }
+
+  public static boolean equals(MyDeque<Integer>a, ArrayDeque<Integer>b){
+    if(a==null && b==null)
+    return true;
+    if(a==null || b==null)
+    return false;
+    if(a.size()!=b.size())
+    return false;
+    if(a.size()==0 && b.size()==0)
+    return true;
+
+    try{
+      while(b.size()>0){
+        if(!a.removeFirst().equals(b.removeFirst())){
+          return false;
+        }
+      }
+    }catch(NoSuchElementException e){
+      return false;
+    }
+    return b.size()==0;
+  }
+
+  public static int test6(int max){
+    MyDeque<Integer> a = new MyDeque<Integer>();
+    ArrayDeque<Integer>b = new ArrayDeque<Integer>();
+
+    for(int i = 0; i < max; i++){
+      int op = (int)(Math.random()*4);
+      if(op == 0){
+        a.addLast(i);
+        b.addLast(i);
+      }
+      if(op == 1){
+        a.addFirst(i);
+        b.addFirst(i);
+      }
+      if(op == 2){
+        if(b.size()>0){
+          System.out.println(a.toString());
+          System.out.println(b.toString());
+          if(! a.getLast().equals(b.getLast())){
+            System.out.println("Fail test6a "+a.getLast()+" vs "+b.getLast());
+            return 0;
+          }
+          a.removeLast();
+          b.removeLast();
+        }
+      }
+      if(op == 3){
+        if(b.size()>0){
+          System.out.println(a.toString());
+          System.out.println(b.toString());
+          if(! a.getFirst().equals(b.getFirst())){
+            System.out.println("Fail test6a "+a.getFirst()+" vs "+b.getFirst());
+            return 0;
+          }
+          a.removeFirst();
+          b.removeFirst();
+        }
+      }
+    }
+    if( equals(a,b) ){
+      return 1;
+    }
+    System.out.println("Fail test6 end");
+    return 0;
+  }
+
+  public static void main(String[] args) {
+    System.out.println(test6(10000));
   }
 }
