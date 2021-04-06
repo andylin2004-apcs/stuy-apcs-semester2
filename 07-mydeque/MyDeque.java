@@ -35,22 +35,22 @@ public class MyDeque<E>{
     return result+"}";
   }
   public void addFirst(E element){
+    if (start == 0){
+      resize();
+    }
     if (firstDone){
       start--;
-    }
-    if (start == -1){
-      resize();
     }
     size++;
     data[start] = element;
     firstDone = true;
   }
   public void addLast(E element){
+    if (end == data.length-1){
+      resize();
+    }
     if (firstDone){
       end++;
-    }
-    if (end == data.length){
-      resize();
     }
     size++;
     data[end] = element;
@@ -81,13 +81,13 @@ public class MyDeque<E>{
     return data[end];
   }
   private void resize(){
-    E[] newData = (E[])new Object[(size)*3];
-    for (int i = 0; i<size; i++){
-      newData[size+i] = data[i+start];
+    E[] newData = (E[])new Object[(data.length)*3];
+    for (int i = start; i<end+1; i++){
+      newData[size+i] = data[i];
     }
     data = newData;
-    start = size;
-    end = size+start-1;
+    start = size+start;
+    end = size+end;
     if (size == 0){
       end++;
     }
@@ -141,8 +141,6 @@ public class MyDeque<E>{
       }
       if(op == 2){
         if(b.size()>0){
-          System.out.println(a.toString());
-          System.out.println(b.toString());
           if(! a.getLast().equals(b.getLast())){
             System.out.println("Fail test6a "+a.getLast()+" vs "+b.getLast());
             return 0;
@@ -153,8 +151,6 @@ public class MyDeque<E>{
       }
       if(op == 3){
         if(b.size()>0){
-          System.out.println(a.toString());
-          System.out.println(b.toString());
           if(! a.getFirst().equals(b.getFirst())){
             System.out.println("Fail test6a "+a.getFirst()+" vs "+b.getFirst());
             return 0;
