@@ -25,9 +25,7 @@ public class MyDeque<E>{
   public String toString(){
     String result = "{";
     for (int i = start; i<end+1; i++){
-      if (data[i] != null){
-        result += data[i];
-      }
+      result += data[i];
       if (i<end){
         result += ", ";
       }
@@ -35,6 +33,7 @@ public class MyDeque<E>{
     return result+"}";
   }
   public void addFirst(E element){
+    nullPointExc(element);
     if (start == 0){
       resize();
     }
@@ -46,6 +45,7 @@ public class MyDeque<E>{
     firstDone = true;
   }
   public void addLast(E element){
+    nullPointExc(element);
     if (end == data.length-1){
       resize();
     }
