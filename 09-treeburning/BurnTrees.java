@@ -53,7 +53,31 @@ public class BurnTrees{
    */
   public void tick(){
     ticks++;
-    //YOU MUST IMPLEMENT THIS
+    int[][] tempMap = new int[map.length][map[0].length];
+
+    for (int i = 0; i<map.length; i++){
+      for (int v = 0; v<map[0].length; v++){
+        if (map[i][v] == FIRE){
+          tempMap[i][v] = ASH;
+          if (i != 0 && map[i-1][v] == TREE){
+            tempMap[i-1][v] = FIRE;
+          }
+          if (i != map.length - 1 && map[i+1][v] == TREE){
+            tempMap[i+1][v] = FIRE;
+          }
+          if (v != 0 && map[i][v-1] == TREE){
+            tempMap[i][v-1] = FIRE;
+          }
+          if (v != map[0].length - 1 && map[i][v+1] == TREE){
+            tempMap[i][v+1] = FIRE;
+          }
+        }else if (tempMap[i][v] != FIRE){
+          tempMap[i][v] = map[i][v];
+        }
+      }
+    }
+
+    map = tempMap;
   }
 
   /*
