@@ -36,6 +36,14 @@ public class BurnTrees{
    */
   public boolean done(){
     //YOU MUST IMPLEMENT THIS
+    for (int i = 0; i<map.length; i++){
+      for (int v = 0; v<map[0].length; v++){
+        if (map[i][v] == ASH){
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
 
