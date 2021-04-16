@@ -55,31 +55,53 @@ public class BurnTrees{
    */
   public void tick(){
     ticks++;
-    int[][] tempMap = new int[map.length][map[0].length];
+    // int[][] tempMap = new int[map.length][map[0].length];
+    //
+    // for (int i = 0; i<map.length; i++){
+    //   for (int v = 0; v<map[0].length; v++){
+    //     if (map[i][v] == FIRE){
+    //       tempMap[i][v] = ASH;
+    //       if (i != 0 && map[i-1][v] == TREE){
+    //         tempMap[i-1][v] = FIRE;
+    //       }
+    //       if (i != map.length - 1 && map[i+1][v] == TREE){
+    //         tempMap[i+1][v] = FIRE;
+    //       }
+    //       if (v != 0 && map[i][v-1] == TREE){
+    //         tempMap[i][v-1] = FIRE;
+    //       }
+    //       if (v != map[0].length - 1 && map[i][v+1] == TREE){
+    //         tempMap[i][v+1] = FIRE;
+    //       }
+    //     }else if (tempMap[i][v] != FIRE){
+    //       tempMap[i][v] = map[i][v];
+    //     }
+    //   }
+    // }
+    //
+    // map = tempMap;
 
-    for (int i = 0; i<map.length; i++){
-      for (int v = 0; v<map[0].length; v++){
-        if (map[i][v] == FIRE){
-          tempMap[i][v] = ASH;
-          if (i != 0 && map[i-1][v] == TREE){
-            tempMap[i-1][v] = FIRE;
-          }
-          if (i != map.length - 1 && map[i+1][v] == TREE){
-            tempMap[i+1][v] = FIRE;
-          }
-          if (v != 0 && map[i][v-1] == TREE){
-            tempMap[i][v-1] = FIRE;
-          }
-          if (v != map[0].length - 1 && map[i][v+1] == TREE){
-            tempMap[i][v+1] = FIRE;
-          }
-        }else if (tempMap[i][v] != FIRE){
-          tempMap[i][v] = map[i][v];
-        }
+    int size = frontier.size();
+    for (int i = 0; i<size; i++){
+      int[] coord = frontier.remove();
+      map[coord[0]][coord[1]] = ASH;
+      if (coord[0] != 0 && map[coord[0]-1][coord[1]] == TREE){
+        map[coord[0]-1][coord[1]] = FIRE;
+        frontier.add(new int[]{coord[0]-1, coord[1]});
+      }
+      if (coord[0] != map.length - 1 && map[coord[0]+1][coord[1]] == TREE){
+        map[coord[0]+1][coord[1]] = FIRE;
+        frontier.add(new int[]{coord[0]+1, coord[1]});
+      }
+      if (coord[1] != 0 && map[coord[0]][coord[1]-1] == TREE){
+        map[coord[0]][coord[1]-1] = FIRE;
+        frontier.add(new int[]{coord[0], coord[1]-1});
+      }
+      if (coord[1] != map[0].length - 1 && map[coord[0]][coord[1]+1] == TREE){
+        map[coord[0]][coord[1]+1] = FIRE;
+        frontier.add(new int[]{coord[0], coord[1]+1});
       }
     }
-
-    map = tempMap;
   }
 
   /*
