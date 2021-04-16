@@ -31,22 +31,13 @@ public class BurnTrees{
         if(Math.random() < density)
            map[r][c]=2;
     start();//set the left column on fire.
-    run();
   }
 
   /*Determine if the simulation is still burning
    *@return false if any fires are still burning, true otherwise
    */
   public boolean done(){
-    //YOU MUST IMPLEMENT THIS
-    for (int i = 0; i<map.length; i++){
-      for (int v = 0; v<map[0].length; v++){
-        if (map[i][v] == FIRE){
-          return false;
-        }
-      }
-    }
-    return true;
+    return frontier.size() == 0;
   }
 
 
