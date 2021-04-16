@@ -31,6 +31,7 @@ public class BurnTrees{
         if(Math.random() < density)
            map[r][c]=2;
     start();//set the left column on fire.
+    run();
   }
 
   /*Determine if the simulation is still burning
@@ -40,12 +41,12 @@ public class BurnTrees{
     //YOU MUST IMPLEMENT THIS
     for (int i = 0; i<map.length; i++){
       for (int v = 0; v<map[0].length; v++){
-        if (map[i][v] == ASH){
-          return true;
+        if (map[i][v] == FIRE){
+          return false;
         }
       }
     }
-    return false;
+    return true;
   }
 
 
@@ -180,7 +181,7 @@ public class BurnTrees{
 
 
     System.out.println(b.animate(DELAY));//animate all screens and print the final answer
-    //System.out.println(b.outputAll());//print all screens and the final answer
+    // System.out.println(b.outputAll());//print all screens and the final answer
   }
 
 
