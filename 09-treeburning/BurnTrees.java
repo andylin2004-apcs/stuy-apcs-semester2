@@ -1,12 +1,12 @@
 import java.util.*;
 public class BurnTrees{
   private Frontier frontier;
-  private int[][]map;
+  private byte[][]map;
   private int ticks;
-  private static int TREE = 2;
-  private static int FIRE = 1;
-  private static int ASH = 3;
-  private static int SPACE = 0;
+  private static byte TREE = 2;
+  private static byte FIRE = 1;
+  private static byte ASH = 3;
+  private static byte SPACE = 0;
 
 
   /*DO NOT UPDATE THIS
@@ -24,7 +24,7 @@ public class BurnTrees{
    *otherwise it is complete
    */
   public BurnTrees(int width,int height, double density){
-    map = new int[height][width];
+    map = new byte[height][width];
     frontier = new Frontier();
     for(int r=0; r<map.length; r++ )
       for(int c=0; c<map[r].length; c++ )
