@@ -1,3 +1,5 @@
+import java.util.*;
+
 class MyHeap{
   /*Swap the element at the provided index downward into the correct position.
   This will swap with the larger of the child nodes provided thatchild is larger.
@@ -13,12 +15,12 @@ class MyHeap{
       if (2*index+1 < size && data[index] < data[2*index+1]){
         int temp = data[index];
         data[index] = data[2*index+1];
-        data[2*index+1] = data[index];
+        data[2*index+1] = temp;
         index *= 2 + 1;
       }else if (2*index+2 < size && data[index] < data[2*index+2]){
         int temp = data[index];
         data[index] = data[2*index+2];
-        data[2*index+2] = data[index];
+        data[2*index+2] = temp;
         index *= 2 + 2;
       }
     }
@@ -28,6 +30,6 @@ class MyHeap{
   *@param data is the array to be modified
   */
   private static void buildHeap(int[]data){
-
+    
   }
 }
