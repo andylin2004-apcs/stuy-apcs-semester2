@@ -10,7 +10,7 @@ class MyHeap{
   *@precondition index is between 0 and size-1 inclusive
   *@precondition size is between 0 and data.length inclusive.
   */
-  public static void pushDown(int[]data, int size, int index){
+  private static void pushDown(int[]data, int size, int index){
     while (2*index+2 < size && (data[index] < data[2*index+1] || data[index] < data[2*index+2])){
       if (data[2*index+2] <= data[2*index+1] && data[index] < data[2*index+1]){
         int temp = data[index];
@@ -31,7 +31,7 @@ class MyHeap{
   /*Reorder the provided array to be a valid heap.
   *@param data is the array to be modified
   */
-  public static void buildHeap(int[]data){
+  private static void buildHeap(int[]data){
     for (int cycle = 0; cycle < 2; cycle++){
       for (int i = 0; i<data.length; i++){
         while (2*i+2 < data.length && (data[i] < data[2*i+1] || data[i] < data[2*i+2])){
