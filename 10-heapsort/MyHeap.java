@@ -1,5 +1,3 @@
-import java.util.*;
-
 class MyHeap{
   /*Swap the element at the provided index downward into the correct position.
   This will swap with the larger of the child nodes provided thatchild is larger.
