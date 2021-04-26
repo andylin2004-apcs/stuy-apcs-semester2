@@ -32,13 +32,7 @@ class MyHeap{
   *@param data is the array to be modified
   */
   public static void buildHeap(int[]data){
-    // for (int cycle = 0; cycle < 2; cycle++){
-    //   for (int i = 0; i<data.length; i++){
-    //     pushDown(data, data.length, i);
-    //   }
-    // }
-    int lastParent = (data.length-2)/2;
-    for (int i = lastParent; i>=0; i--){
+    for (int i = (data.length-2)/2; i>=0; i--){
       pushDown(data, data.length, i);
     }
   }
