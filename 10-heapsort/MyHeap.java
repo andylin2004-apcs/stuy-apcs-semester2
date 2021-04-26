@@ -32,10 +32,30 @@ class MyHeap{
   *@param data is the array to be modified
   */
   public static void buildHeap(int[]data){
-    for (int cycle = 0; cycle < 2; cycle++){
-      for (int i = 0; i<data.length; i++){
-        pushDown(data, data.length, i);
-      }
+    // for (int cycle = 0; cycle < 2; cycle++){
+    //   for (int i = 0; i<data.length; i++){
+    //     pushDown(data, data.length, i);
+    //   }
+    // }
+    int lastParent = (data.length-2)/2;
+    for (int i = lastParent; i>=0; i--){
+      pushDown(data, data.length, i);
     }
   }
+
+  /*Swap the root node with the element at the provided index.
+  *Then push the new root down, but not past the index that it swapped with.
+  *@precondition: size is between 0 and data.length inclusive.
+  */
+ private static void remove(int[]data,int size){
+
+ }
+
+ /*Sort the provided array
+  *@param data is the array to be sorted
+  */
+ public static void heapsort(int[]data){
+
+ }
+
 }
