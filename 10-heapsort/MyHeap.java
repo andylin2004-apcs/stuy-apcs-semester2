@@ -40,7 +40,11 @@ class MyHeap{
   *@precondition: size is between 0 and data.length inclusive.
   */
  private static void remove(int[]data,int size){
+   int temp = data[0];
+   data[0] = data[size-1];
+   data[size-1] = temp;
 
+   pushDown(data, size-1, 0);
  }
 
  /*Sort the provided array
