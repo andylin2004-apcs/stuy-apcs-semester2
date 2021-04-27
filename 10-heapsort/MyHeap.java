@@ -1,3 +1,5 @@
+import java.util.*;
+
 class MyHeap{
   /*Swap the element at the provided index downward into the correct position.
   This will swap with the larger of the child nodes provided thatchild is larger.
@@ -24,15 +26,26 @@ class MyHeap{
         index += 2;
       }
     }
+    if (2*index+1 < size && data[index] < data[2*index+1]){
+      int temp = data[index];
+      data[index] = data[2*index+1];
+      data[2*index+1] = temp;
+      index *= 2;
+      index += 1;
+    }
   }
 
   /*Reorder the provided array to be a valid heap.
   *@param data is the array to be modified
   */
   public static void buildHeap(int[]data){
-    for (int i = (data.length-2)/2; i>=0; i--){
+    System.out.println(Arrays.toString(data));
+    for (int i = data.length; i>=0; i--){
       pushDown(data, data.length, i);
+      System.out.println(i);
+      System.out.println(Arrays.toString(data));
     }
+    // System.out.println(Arrays.toString(data));
   }
 
   /*Swap the root node with the element at the provided index.
@@ -52,9 +65,12 @@ class MyHeap{
   */
  public static void heapsort(int[]data){
    buildHeap(data);
+   System.out.println("sus");
 
-   for (int i = data.length-1; i>=0; i--){
-     remove(data, i);
+   for (int i = 0; i<data.length-2; i++){
+     remove(data, data.length-i);
+     System.out.println(Arrays.toString(data));
+     // System.out.println(data.length-i);
    }
  }
 
