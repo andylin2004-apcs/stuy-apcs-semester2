@@ -25,7 +25,7 @@ void mousePressed() {
    //Left click: call the click of each cow 
    if (mouseButton == LEFT){
      for (int i = 0; i<particles.size(); i++){
-       if (Math.pow(mouseX, 2)+Math.pow(mouseY, 2) < Math.pow(particles.get(i).radius, 2)){
+       if (Math.pow(mouseX-particles.get(i).x, 2)+Math.pow(mouseY-particles.get(i).y, 2) < Math.pow(particles.get(i).radius, 2)){
          particles.get(i).click();
        }
      }
@@ -83,6 +83,9 @@ public class Cow {
     }else{
       fill(255,0,0, 255/2);
     }
+    if (selected){
+      ellipse(x-radius/2, y-radius/2, radius/4, radius/4);
+    }
     ellipse(x, y, radius*2, radius*2);
   }
 
@@ -102,5 +105,4 @@ public class Cow {
       }
     }
   }
- 
 }
