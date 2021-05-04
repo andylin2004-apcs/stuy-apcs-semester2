@@ -23,7 +23,6 @@ void mousePressed() {
    //Read about mouseClicked()/mousePressed() and related methods in the documentation.
    //Right click: add a cow at the mouse location.
    //Left click: call the click of each cow 
-   println(mouseX);
    if (mouseButton == LEFT){
      for (int i = 0; i<particles.size(); i++){
        if (Math.pow(mouseX, 2)+Math.pow(mouseY, 2) < Math.pow(particles.get(i).radius, 2)){
@@ -78,7 +77,12 @@ public class Cow {
   }
   void display() {
     noStroke();
-    fill(c);
+    this.collide(particles);
+    if (!colliding){
+      fill(c);
+    }else{
+      fill(255,0,0, 255/2);
+    }
     ellipse(x, y, radius*2, radius*2);
   }
 
@@ -90,9 +94,11 @@ public class Cow {
   
   void collide(ArrayList<Cow>others){
     for (int i = 0; i<others.size(); i++){
-      if (Math.pow(others.get(i).x,2)+Math.pow(others.get(i).y,2) > Math.pow(radius,2)){
+      if (Math.pow(others.get(i).x-this.x,2)+Math.pow(others.get(i).y-this.y,2) < Math.pow(this.radius+others.get(i).radius,2) && (this.c != others.get(i).c && this.x != others.get(i).x && this.y != others.get(i).y && this.radius != others.get(i).radius && this.dx != others.get(i).dx && this.dy != others.get(i).dy)){
         this.colliding = true;
-        others.get(i).colliding = true;
+        break;
+      }else{
+        this.colliding = false;
       }
     }
   }
