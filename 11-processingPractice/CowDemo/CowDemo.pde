@@ -24,6 +24,18 @@ void mousePressed() {
    //Right click: add a cow at the mouse location.
    //Left click: call the click of each cow 
    println(mouseX);
+   if (mouseButton == LEFT){
+     for (int i = 0; i<particles.size(); i++){
+       if (Math.pow(mouseX, 2)+Math.pow(mouseY, 2) < Math.pow(particles.get(i).radius, 2)){
+         particles.get(i).click();
+       }
+     }
+   }else if (mouseButton == RIGHT){
+     Cow add = new Cow();
+     add.x = mouseX;
+     add.y = mouseY;
+     particles.add(add);
+   }
 }
 
 void keyPressed() {
