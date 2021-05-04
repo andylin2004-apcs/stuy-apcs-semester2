@@ -1,4 +1,5 @@
 ArrayList<Cow> particles;
+
 void setup() {
   frameRate(30);
   size(1000, 800);
@@ -34,6 +35,9 @@ void keyPressed() {
 public class Cow {
   float x, y, dx, dy, radius;
   color c;
+  boolean colliding;
+  boolean selected;
+  
   Cow(float rad, float x, float y, float dx, float dy) {
     radius = rad;
     this.x = x;
@@ -64,6 +68,10 @@ public class Cow {
   void click(){
    //if the mouseX and mouseY are touching this cow, 
    //change the cow...  
+  }
+  
+  void collide(ArrayList<Cow>others){
+    
   }
  
 }
