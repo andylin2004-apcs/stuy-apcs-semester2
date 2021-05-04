@@ -42,6 +42,9 @@ void keyPressed() {
   //Read about keyPressed() in the documentation.
   //hint:
   //println(keyCode);
+  if (keyCode == 32){
+    particles.clear();
+  }
 }
 
 public class Cow {
