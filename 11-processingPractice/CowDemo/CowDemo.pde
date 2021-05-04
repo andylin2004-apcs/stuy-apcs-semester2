@@ -83,15 +83,23 @@ public class Cow {
     }else{
       fill(255,0,0, 255/2);
     }
-    if (selected){
-      ellipse(x-radius/2, y-radius/2, radius/4, radius/4);
-    }
     ellipse(x, y, radius*2, radius*2);
+    if (selected){
+      fill(0);
+      ellipse(x-radius/2, y-radius/4, radius/2, radius/2);
+      ellipse(x+radius/2, y-radius/4, radius/2, radius/2);
+      textSize(10);
+      text("DX: "+this.dx+"\nDY: "+this.dy,this.x+this.radius,this.y-this.radius);
+      fill(255);
+      ellipse(x-radius/2, y-radius/4, radius/5, radius/5);
+      ellipse(x+radius/2, y-radius/4, radius/5, radius/5);
+    }
   }
 
   void click(){
    //if the mouseX and mouseY are touching this cow, 
    //change the cow...  
+   selected = !selected;
    c = color(random(255), random(255), random(255));
   }
   
