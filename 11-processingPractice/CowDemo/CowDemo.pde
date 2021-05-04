@@ -60,6 +60,8 @@ public class Cow {
     this.dx = (int)(dx*100)/100.0;
     this.dy = (int)(dy*100)/100.0;
     c = color(random(255),random(255),random(255));
+    colliding = false;
+    selected = false;
 
   }
   Cow() {
@@ -87,7 +89,12 @@ public class Cow {
   }
   
   void collide(ArrayList<Cow>others){
-    
+    for (int i = 0; i<others.size(); i++){
+      if (Math.pow(others.get(i).x,2)+Math.pow(others.get(i).y,2) > Math.pow(radius,2)){
+        this.colliding = true;
+        others.get(i).colliding = true;
+      }
+    }
   }
  
 }
