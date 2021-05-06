@@ -105,7 +105,6 @@ public class Cow {
    //if the mouseX and mouseY are touching this cow, 
    //change the cow...  
    selected = !selected;
-   c = color(random(255), random(255), random(255));
   }
   
   void collide(ArrayList<Cow>others){
