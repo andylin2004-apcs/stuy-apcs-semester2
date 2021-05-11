@@ -69,4 +69,21 @@ public class Cow {
       }
     }
   }
+  
+    /*Write a Cow method that will modify the dx and dy
+   *such that the cow will change the direction it is moving
+   *counter-clockwise by the specified angle (degrees).
+   *Test this with any of the existing cow demos. (make the cows turn 30 degrees on click)
+   */
+  void turn(float angle){
+
+  }
+  /*Write a Cow method that will modify the dx and dy
+   *such that the cow will add dv to the magnitude of its velocity 
+   *but maintain the same direction.
+   *Test this with any of the existing cow demos. (make the cows get 2 units faster on click to test)
+   */
+  void changeSpeed(float dv){
+
+  }
 }
