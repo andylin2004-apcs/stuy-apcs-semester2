@@ -46,7 +46,7 @@ public class Cow {
       ellipse(x-radius/2, y-radius/4, radius/2, radius/2);
       ellipse(x+radius/2, y-radius/4, radius/2, radius/2);
       textSize(10);
-      text("DX: "+this.dx+"\nDY: "+this.dy,this.x+this.radius,this.y-this.radius);
+      text("DX: "+this.dx+"\nDY: "+this.dy+"\n"+degrees(atan(dy/dx)),this.x+this.radius,this.y-this.radius);
       fill(255);
       ellipse(x-radius/2, y-radius/4, radius/5, radius/5);
       ellipse(x+radius/2, y-radius/4, radius/5, radius/5);
@@ -56,7 +56,8 @@ public class Cow {
   void click(){
    //if the mouseX and mouseY are touching this cow, 
    //change the cow...  
-   selected = !selected;
+   selected = true;
+   turn(30);
   }
   
   void collide(ArrayList<Cow>others){
@@ -76,7 +77,23 @@ public class Cow {
    *Test this with any of the existing cow demos. (make the cows turn 30 degrees on click)
    */
   void turn(float angle){
-
+    float d = (float)Math.pow(Math.pow(dy,2)+Math.pow(dx,2), 0.5);
+    float newAngle = degrees(atan(dy/dx))-angle;
+    
+    if (newAngle < 0){
+      newAngle += 360;
+    }
+    
+    dx = d*cos(radians(newAngle));
+    dy = d*sin(radians(newAngle));
+    
+    //if (newAngle >= 180){
+    //  dx *= -1;
+    //}
+    
+    //if (newAngle < 270 && newAngle > 90){
+    //  dy *= -1;
+    //}
   }
   /*Write a Cow method that will modify the dx and dy
    *such that the cow will add dv to the magnitude of its velocity 
@@ -84,6 +101,6 @@ public class Cow {
    *Test this with any of the existing cow demos. (make the cows get 2 units faster on click to test)
    */
   void changeSpeed(float dv){
-
+    
   }
 }
