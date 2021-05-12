@@ -56,8 +56,7 @@ public class Cow {
   void click(){
    //if the mouseX and mouseY are touching this cow, 
    //change the cow...  
-   selected = true;
-   turn(30);
+   selected = !selected;
   }
   
   void collide(ArrayList<Cow>others){
@@ -78,22 +77,10 @@ public class Cow {
    */
   void turn(float angle){
     float d = (float)Math.pow(Math.pow(dy,2)+Math.pow(dx,2), 0.5);
-    float newAngle = degrees(atan(dy/dx))-angle;
-    
-    if (newAngle < 0){
-      newAngle += 360;
-    }
+    float newAngle = degrees(atan2(dy, dx))-angle;
     
     dx = d*cos(radians(newAngle));
     dy = d*sin(radians(newAngle));
-    
-    //if (newAngle >= 180){
-    //  dx *= -1;
-    //}
-    
-    //if (newAngle < 270 && newAngle > 90){
-    //  dy *= -1;
-    //}
   }
   /*Write a Cow method that will modify the dx and dy
    *such that the cow will add dv to the magnitude of its velocity 
@@ -101,6 +88,12 @@ public class Cow {
    *Test this with any of the existing cow demos. (make the cows get 2 units faster on click to test)
    */
   void changeSpeed(float dv){
+    float d = (float)Math.pow(Math.pow(dy,2)+Math.pow(dx,2), 0.5);
+    d += dv;
     
+    float angle = atan2(dy, dx);
+    
+    dx = d*cos(angle);
+    dy = d*sin(angle);
   }
 }
