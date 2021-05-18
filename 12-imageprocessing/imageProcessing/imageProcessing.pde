@@ -16,14 +16,18 @@ class Kernel {
     if (x > 0 && y > 0 && x < kernel.length-1 && y < kernel[0].length-1){
       return color(0,0,0);
     }else{
-      float result = 0;
+      float redResult = 0;
+      float blueResult = 0;
+      float greenResult = 0;
       for (int i = 0; i<kernel.length; i++){
         for (int v = 0; v<kernel[0].length; v++){
-          color toEdit = img.get(x-1+i,y-1+i);
-          result += toEdit*kernel[i][v];
+          color toEdit = img.get(x-1+i,y-1+v);
+          redResult += red(toEdit)*kernel[i][v];
+          blueResult += blue(toEdit)*kernel[i][v];
+          greenResult += green(toEdit)*kernel[i][v];
         }
       }
-      return (int)result;
+      return color(redResult, greenResult, blueResult);
     }
   }
 
