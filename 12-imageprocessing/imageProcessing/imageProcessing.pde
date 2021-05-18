@@ -32,6 +32,13 @@ class Kernel {
 
   */
   void apply(PImage source, PImage destination) {
+    for (int i = 0; i<source.pixels.length; i++){
+      if (i/source.width == 0 || i/source.width == source.height -1 || i%source.width == 0 || i%source.width == source.width - 1){
+        destination.set(i%source.width, i/source.width, color(0));
+      }else{
+        destination.set(i%source.width, i/source.width, calcNewColor(source, i%source.width, i/source.width));
+      }
+    }
   }
 
 }
